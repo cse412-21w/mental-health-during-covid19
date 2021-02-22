@@ -1,0 +1,32 @@
+body, html {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header, .navbar {
+    width: 100%;
+}
+
+.title {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#intro {
+    margin-right: 4em;
+    margin-left: 4em;
+    line-height: 1.5em;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #323232;
+    height: 8em;
+    color: white;
+}
