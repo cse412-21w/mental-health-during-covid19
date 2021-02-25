@@ -30,3 +30,7 @@ footer {
     height: 8em;
     color: white;
 }
+
+#viualization-container {
+    width: 80%;
+}
