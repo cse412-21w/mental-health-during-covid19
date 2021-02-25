@@ -1,6 +1,6 @@
 # Final Project Demo
 ## Team Members
-Place your team member names here.
+Jamie Forschmiedt, Travis Xie, Yichi Zhang
 ### Contribution Statements
 Add individual contribution statements here.
 ## Project Proposal Abstract
