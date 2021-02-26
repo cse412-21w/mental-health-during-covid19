@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html",
+    "start": "parcel docs/index.html",
     "build": "parcel build src/index.html --no-minify --public-url https://cse412-21w.github.io/mental-health-during-covid19/ & RD /S /Q .\\docs & ren .\\dist docs"
   },
   "repository": {
@@ -22,5 +22,8 @@
     "cssnano": "^4.1.10",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-static-files-copy": "^2.5.1"
+  },
+  "dependencies": {
+    "arquero": "^3.0.0"
   }
 }
