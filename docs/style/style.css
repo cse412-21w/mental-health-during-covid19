@@ -34,3 +34,8 @@ footer {
 #viualization-container {
     width: 80%;
 }
+
+.description {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
