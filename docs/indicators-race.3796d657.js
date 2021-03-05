@@ -117,12 +117,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"ZQwg":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/sunshine.71fb7d0b.csv";
-},{}],"CsaW":[function(require,module,exports) {
+})({"XW3e":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/anxiety_gender.2ad534da.csv";
+},{}],"lQjA":[function(require,module,exports) {
 "use strict";
 
-var _sunshine = _interopRequireDefault(require("../static/sunshine.csv"));
+var _anxiety_gender = _interopRequireDefault(require("../static/anxiety_gender.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -131,8 +131,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // With strict mode, you can not, for example, use undeclared variables
 
 
-var sunshineArray = []; // used to store data later
+var races = races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispanic black, single race', 'Non-Hispanic Asian, single race', 'Non-Hispanic, other races and multiple races']; // used to store data later
 
+var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 'Symptoms of Anxiety Disorder or Depressive Disorder'];
+var cdcArray = [];
 var citySet = [];
 var options = {
   config: {// Vega-Lite default configuration
@@ -152,28 +154,30 @@ var options = {
 };
 vl.register(vega, vegaLite, options); // Again, We use d3.csv() to process data
 
-d3.csv(_sunshine.default).then(function (data) {
+d3.csv(_anxiety_gender.default).then(function (data) {
   data.forEach(function (d) {
-    sunshineArray.push(d);
+    cdcArray.push(d);
 
     if (!citySet.includes(d.city)) {
       citySet.push(d.city);
     }
   });
-  drawBarVegaLite();
+  drawLineVegaLite();
 });
+/*anxiety_gender = cdchealth
+.filter(d => op.includes(d.Group, 'By Gender'))
+.filter(d => op.equal(d.Indicator, 'Symptoms of Anxiety Disorder'))
+.filter(d => !op.includes(d.TimePeriodLabel, 'July 22 - Aug 18'))
+.filter(d => !op.includes(d.TimePeriodLabel, 'Dec 22 - Jan 5')) */
 
-function drawBarVegaLite() {
+function drawLineVegaLite() {
   // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
   // your visualization goes here
-  vl.markBar({
-    filled: true,
-    color: 'teal'
-  }).data(sunshineArray).encode(vl.x().fieldN('month').sort('none'), vl.y().fieldQ('sunshine'), vl.tooltip(['sunshine'])).width(450).height(450).render().then(function (viewElement) {
+  vl.markLine().data(_anxiety_gender.default).encode(vl.x().fieldO('TimePeriodLabel'), vl.y().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.tooltip('Value')).width(450).height(450).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
-    document.getElementById('view').appendChild(viewElement);
+    document.getElementById('anxiety').appendChild(viewElement);
   });
 }
-},{"../static/sunshine.csv":"ZQwg"}]},{},["CsaW"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/vegaDemo.b15bb0aa.js.map
+},{"../static/anxiety_gender.csv":"XW3e"}]},{},["lQjA"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.3796d657.js.map
