@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel docs/index.html",
-    "build": "parcel build src/index.html --no-minify --public-url https://cse412-21w.github.io/mental-health-during-covid19/ & RD /S /Q .\\docs & ren .\\dist docs"
+    "start": "parcel testsrc/index.html",
+    "build": "parcel build testsrc/index.html --no-minify --public-url https://cse412-21w.github.io/mental-health-during-covid19/ & RD /S /Q .\\docs & ren .\\dist docs"
   },
   "repository": {
     "type": "git",
