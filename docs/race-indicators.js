@@ -5,7 +5,7 @@ import anxietygender from '../static/anxiety_gender.csv'
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
 
-var races = races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispanic black, single race',
+var races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispanic black, single race',
 'Non-Hispanic Asian, single race', 'Non-Hispanic, other races and multiple races'];   // used to store data later
 var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 
 'Symptoms of Anxiety Disorder or Depressive Disorder'];
