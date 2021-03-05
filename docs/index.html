@@ -1,144 +1,96 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-     <!-- For using d3 -->
-     <script src="https://d3js.org/d3.v6.min.js"></script>
-     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-     <!-- For using vega-lite -->
-     <script src="https://cdn.jsdelivr.net/npm/vega"></script>
-     <script src="https://cdn.jsdelivr.net/npm/vega-lite"></script>
-     <script src="https://cdn.jsdelivr.net/npm/vega-lite-api"></script>
-     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
-     <!-- For using Arquero -->
-     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-     <script src="https://cdn.jsdelivr.net/npm/apache-arrow@3"></script>
-     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet">
-    
-     <!-- Link vega lite js --> 
-     <!-- <script type="module" src="./vega-lite/depressive-indicator.js" defer></script> -->
-     <title>Mental Heatlh during COVID-19</title>
-</head>
-<body>
-    <header >
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-md">
-              <a class="navbar-brand" href="#">Mental Health and Covid-19</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Intro</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Dataset Overview</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Data Visualizations</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Conclusion</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-    </header>
+    <head>
+        <meta charset="utf-8">
+        <title>CSE 412 Project Demo</title>
+        <link rel="stylesheet" href="https://cse412-21w.github.io/mental-health-during-covid19/style.aa351f8a.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <!-- For using d3 -->
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <!-- For using vega-lite -->
+        <script src="https://cdn.jsdelivr.net/npm/vega"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite-api"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet">
+    </head>
 
-    
-    <h1 class="title" id="proj-title">Mental Health and Covid-19</h1>
-
-    <div id="intro-container">
-        <p id="intro">
-            The COVID-19 pandemic has completely changed our way of life and resulted in prolonged stress due to the toll of the virus, long lockdowns, and lack of social interaction. Even worse, the parallel pandemic of racism and political turbulence exacerbates the existing problem of mental health. To convey the severity of mental health concern as impacted by COVID-19, we decided to make an interactive data visualization project to examine the burden of mental illness including anxiety and depression in the United States during 2020 and compare them with 2019. First, we will use the author-based model to tell the audience our insight by examining the datasets. Then we plan to incorporate explorative visualizations that allow the audience to select a race category & examine mental health trends between 2019 and 2020. 
+    <body>
+      <section class="title">
+        <a href="/">CSE 412 Demo</a>
+      </section>
+      <section>
+        <h2>Final Project</h2>
+        <p>The final project will provide hands-on experience designing, implementing, 
+          and deploying interactive visualizations. Your project should address a concrete
+          visualization challenge and should propose a novel, creative solution. The final
+          deliverable will take the form of a visual analysis tool or an explanatory narrative,
+          deployed as an interactive web page. More info on the
+          <a href="https://courses.cs.washington.edu/courses/cse412/21wi/fp.html">course website</a>.
         </p>
-    </div>
-    
+      </section>
+      <section>
+        <p><strong>This page is used mainly to demo how to embed visualizations. All visualizations below are
+          not perfect and need more iteration critiques before really publishing on a webpage.
+        </strong></p>
+      </section>
+      
 
-    <div id="data-overview-container">
-        <h1 class="title" id="overview-title">Dataset Overview</h1>
-    </div>
-
-
-    <!-- Remember to add visualization in this <div> element -->
-    <div id="viualization-container">
-        <h1 class="title" id="visualization-title">Data Visualizations</h1>
-
-        <section id = "vegaDemo">
-          <h5>Embed a Vega-Lite Visualization:</h5>
-          
-          <div id='anxiety'></div>
-        </section>
-
-        <div class='tableauPlaceholder' id='viz1614216847649' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CD&#47;CDCHouseholdPulseSurveyExploratory&#47;Anxietyeachweek&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CDCHouseholdPulseSurveyExploratory&#47;Anxietyeachweek' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CD&#47;CDCHouseholdPulseSurveyExploratory&#47;Anxietyeachweek&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1614216847649');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-        <p class="description">The percengate of American adult with Anxiety Symptom peaks at periods of June - July and Oct-Jan</p>
-
-        <div class='tableauPlaceholder' id='viz1614217020947' style='position: relative'>
+      
+      <section id="tableauDemo"> 
+        <h3>Embed a Tableau Visualization:</h3>
+        <div class="tableauPlaceholder" id="viz1612344209794" style="position: relative">
           <noscript>
-            <a href='#'>
-              <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;FinalProject_16142169855810&#47;NewCases&#47;1_rss.png' style='border: none' />
+            <a href="#">
+              <img alt=" " src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;41&#47;412demo&#47;Sheet1&#47;1_rss.png" style="border: none">
             </a>
           </noscript>
-          <object class='tableauViz'  style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-            <param name='embed_code_version' value='3' /> 
-            <param name='site_root' value='' />
-            <param name='name' value='FinalProject_16142169855810&#47;NewCases' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;FinalProject_16142169855810&#47;NewCases&#47;1.png' /> 
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='yes' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
-            <param name='language' value='en' />
-            <param name='filter' value='publish=yes' />
+          <object class="tableauViz" style="display:none;">
+            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F">
+            <param name="embed_code_version" value="3">
+            <param name="site_root" value="">
+            <param name="name" value="412demo&#47;Sheet1">
+            <param name="tabs" value="no">
+            <param name="toolbar" value="yes">
+            <param name="static_image" value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;41&#47;412demo&#47;Sheet1&#47;1.png">
+            <param name="animate_transition" value="yes">
+            <param name="display_static_image" value="yes">
+            <param name="display_spinner" value="yes">
+            <param name="display_overlay" value="yes">
+            <param name="display_count" value="yes">
+            <param name="language" value="en">
           </object>
-        </div>              
-        <script type='text/javascript'>                    
-          var divElement = document.getElementById('viz1614217020947');      
-          var vizElement = divElement.getElementsByTagName('object')[0];                    
-          vizElement.style.width='100%';
-          vizElement.style.height=(divElement.offsetWidth*0.90)+'px';
-          var scriptElement = document.createElement('script');
-          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-          vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-        </script>
-         <p class="description">The peak of Covid case in Summer and Autumn matches with the peak of anxiety symptoms according to the chart above</p>
-        
-
-        <div class='tableauPlaceholder' id='viz1614383667052' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;An&#47;Anxietybyrace&#47;Anxietybyrace&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Anxietybyrace&#47;Anxietybyrace' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;An&#47;Anxietybyrace&#47;Anxietybyrace&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1614383667052');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-
-        <p id="compare2019" class="description">
-          Between January-June 2019, 8.2% of American adults indicated symptoms of anxiety, according to the 
-          CDC National Health Interview Survey. In 2020, this number often jumps to well over 30%.
-        </p>
-
-        <div id="vega-depressive-indicator">
-            <img src="./vega-lite/vgl-static.png" alt="A vega-lite data visualization">
         </div>
+        <script>var divElement = document.getElementById('viz1612344209794');
+var vizElement = divElement.getElementsByTagName('object')[0];
+vizElement.style.width = '85%';
+vizElement.style.height = divElement.offsetWidth * 0.4 + 'px';
+var scriptElement = document.createElement('script');
+scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+      </section>
+    
+      <section id="vegaDemo">
+        <h3>Embed a Vega-Lite Visualization:</h3>
+        <div id="view"></div>
+      </section>
+    
+      <section id="d3Demo">
+        <h3>Embed a D3 Visualization:</h3>
+        <div id="d3-demo"></div>
+      </section>
 
-        <p class="description">The trend of Depression Indicator (calculated according to symptom from previous 7 days) has its peak matches with the first two charts </p>
-        <p class="description">Data from CDC</p>
+      <div class="footer">
+        <a href="https://courses.cs.washington.edu/courses/cse412/21wi/">CSE 412 Data Visualization</a>
+        <a href="http://www.washington.edu">University of Washington</a>
       </div>
 
-    
+      <!-- it is recommended to put js files before </body> -->
+      <!-- or check load event fot addEventListener() if you want to put js in the <head> -->
+      <script src="https://cse412-21w.github.io/mental-health-during-covid19/d3Demo.7d177574.js"></script>
 
-    <div id="conclusion-container">
-        <h1 class="title" id="visualization-title">Conclusion</h1>
-    </div>
-    <footer>
-        Copyright © Yichi Zhang, Jamie Forschmiedt, and Travis Xie  
-    </footer>
+      <script src="https://cse412-21w.github.io/mental-health-during-covid19/vegaDemo.b15bb0aa.js"></script>
+    </body>
 
-    <script src="race-indicators.js"></script>   
-</body>
 </html>
