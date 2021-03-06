@@ -119,10 +119,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"XW3e":[function(require,module,exports) {
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/anxiety_gender.2ad534da.csv";
+},{}],"lEnl":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_race.56d05b74.csv";
 },{}],"lQjA":[function(require,module,exports) {
 "use strict";
 
 var _anxiety_gender = _interopRequireDefault(require("../static/anxiety_gender.csv"));
+
+var _all_race = _interopRequireDefault(require("../static/all_race.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -135,7 +139,8 @@ var races = races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'N
 
 var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 'Symptoms of Anxiety Disorder or Depressive Disorder'];
 var cdcArray = [];
-var citySet = [];
+var cdcArray2 = [];
+var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 21 - May 26', 'May 28 - June 2', 'June 4 - June 9', 'June 11 - June 16', 'June 18 - June 23', 'June 25 - June 30', 'July 2 - July 7', 'July 9 - July 14', 'July 16 - July 21', 'Aug 19 - Aug 31', 'Sep 2 - Sep 14', 'Sep 16 - Sep 28', 'Sep 30 - Oct 12', 'Oct 14 - Oct 26', 'Oct 28 - Nov 9', 'Nov 11 - Nov 23', 'Nov 25 - Dec 7', 'Dec 9 - Dec 21', 'Jan 6 - Jan 18', 'Jan 20 - Feb 1'];
 var options = {
   config: {// Vega-Lite default configuration
   },
@@ -156,21 +161,25 @@ vl.register(vega, vegaLite, options); // Again, We use d3.csv() to process data
 
 d3.csv(_anxiety_gender.default).then(function (data) {
   data.forEach(function (d) {
-    cdcArray.push(d);
-
-    if (!citySet.includes(d.city)) {
-      citySet.push(d.city);
-    }
+    cdcArray.push(d); //if (!citySet.includes(d.city)) {
+    //  citySet.push(d.city);
+    //}
   });
-  drawLineVegaLite();
+  drawAnxietyGenderVegaLite();
 });
-/*anxiety_gender = cdchealth
-.filter(d => op.includes(d.Group, 'By Gender'))
+d3.csv(_all_race.default).then(function (data) {
+  data.forEach(function (d) {
+    cdcArray2.push(d);
+  });
+  drawIndicatorsRaceVegaLite();
+});
+/*anxiety_race = cdchealth
+.filter(d => op.includes(d.Group, 'By Race/Hispanic Ethnicity'))
 .filter(d => op.equal(d.Indicator, 'Symptoms of Anxiety Disorder'))
 .filter(d => !op.includes(d.TimePeriodLabel, 'July 22 - Aug 18'))
 .filter(d => !op.includes(d.TimePeriodLabel, 'Dec 22 - Jan 5')) */
 
-function drawLineVegaLite() {
+function drawAnxietyGenderVegaLite() {
   // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
   // your visualization goes here
   vl.markLine().data(_anxiety_gender.default).encode(vl.x().fieldO('TimePeriodLabel'), vl.y().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.tooltip('Value')).width(450).height(450).render().then(function (viewElement) {
@@ -179,5 +188,22 @@ function drawLineVegaLite() {
     document.getElementById('anxiety').appendChild(viewElement);
   });
 }
-},{"../static/anxiety_gender.csv":"XW3e"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.3796d657.js.map
+
+function drawIndicatorsRaceVegaLite() {
+  var selection = vl.selectSingle('Select').fields('Indicator', 'Subgroup').init({
+    Indicator: 'Symptoms of Anxiety Disorder',
+    Subgroup: 'Non-Hispanic black, single race'
+  }).bind({
+    Indicator: vl.menu(indicators),
+    Subgroup: vl.menu(races)
+  });
+  vl.markCircle().data(_all_race.default).title('Symptoms of Anxiety and Depressive Disorder, April 2020 - February 2021').select(selection).encode(vl.x({
+    title: 'Time Period'
+  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
+    title: 'Percentage of population'
+  }).fieldQ('Value'), vl.tooltip().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+    document.getElementById('ind-race').appendChild(viewElement);
+  });
+}
+},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl"}]},{},["lQjA"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.511cec69.js.map
