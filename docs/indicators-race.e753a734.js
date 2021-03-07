@@ -212,10 +212,13 @@ function drawIndicatorsRaceVegaLite() {
     title: 'Time Period'
   }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
     title: 'Percentage of population'
-  }).fieldQ('Value'), vl.tooltip().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+  }).fieldQ('Value'), vl.tooltip().fieldQ('Value'), vl.color({
+    title: 'Race/Ethnicity'
+  }).fieldN('Subgroup'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
     document.getElementById('ind-race').appendChild(viewElement);
   });
-}
+} // COVID cases and Anxiety/Depression 
+
 
 function drawCasesSymptomsVegaLite() {
   var brush = vl.selectInterval().encodings('x');
@@ -233,7 +236,7 @@ function drawCasesSymptomsVegaLite() {
   }).fieldQ('Value'), vl.color().fieldN('SymptomType').legend({
     orient: 'bottom',
     title: 'Symptom Type'
-  }), vl.tooltip().fieldQ('Value'), vl.opacity().if(brush, vl.value(1)).value(0.01)).width(600).height(300);
+  }), vl.tooltip().fieldQ('Value'), vl.opacity().if(brush, vl.value(1)).value(0.005)).width(600).height(300);
   return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021') //.width(450)
   //.height(450)
   .render().then(function (viewElement) {
@@ -268,7 +271,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62982" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63300" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

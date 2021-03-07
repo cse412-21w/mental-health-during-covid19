@@ -122,7 +122,7 @@ module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/anxi
 },{}],"lEnl":[function(require,module,exports) {
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_race.56d05b74.csv";
 },{}],"L1Tp":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merge.5a274557.csv";
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merge.1bb3225e.csv";
 },{}],"lQjA":[function(require,module,exports) {
 "use strict";
 
@@ -236,7 +236,7 @@ function drawCasesSymptomsVegaLite() {
   }).fieldQ('Value'), vl.color().fieldN('SymptomType').legend({
     orient: 'bottom',
     title: 'Symptom Type'
-  }), vl.tooltip().fieldQ('Value'), vl.opacity().if(brush, vl.value(1)).value(0.01)).width(600).height(300);
+  }), vl.tooltip().fieldQ('Value'), vl.opacity().if(brush, vl.value(1)).value(0.005)).width(600).height(300);
   return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021') //.width(450)
   //.height(450)
   .render().then(function (viewElement) {
@@ -244,4 +244,4 @@ function drawCasesSymptomsVegaLite() {
   });
 }
 },{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.86438046.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.cb86d503.js.map

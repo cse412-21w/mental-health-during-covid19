@@ -138,7 +138,7 @@ function drawIndicatorsRaceVegaLite() {
       vl.y({title: 'Percentage of population'}).fieldQ('Value'),
       vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
       vl.tooltip().fieldQ('Value'),
-      vl.opacity().if(brush, vl.value(1)).value(0.01)
+      vl.opacity().if(brush, vl.value(1)).value(0.005)
     ).width(600).height(300)
   
   return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
