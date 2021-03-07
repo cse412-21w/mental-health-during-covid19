@@ -1,5 +1,7 @@
 import anxiety_gender from '../static/anxiety_gender.csv';
 import all_race from '../static/all_race.csv';   // import dataset
+import merge from '../static/merge.csv';
+
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
 
@@ -9,6 +11,7 @@ var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disord
 'Symptoms of Anxiety Disorder or Depressive Disorder'];
 var cdcArray = [];
 var cdcArray2 = [];
+var cdcArray3 = [];
 var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 21 - May 26',
                 'May 28 - June 2', 'June 4 - June 9', 'June 11 - June 16', 'June 18 - June 23', 
                 'June 25 - June 30', 'July 2 - July 7', 'July 9 - July 14', 'July 16 - July 21',
@@ -54,6 +57,13 @@ d3.csv(all_race).then(function(data) {
   drawIndicatorsRaceVegaLite();
 }); 
 
+d3.csv(merge).then(function(data) {
+  data.forEach(function(d) {
+    cdcArray3.push(d);
+  })
+  drawCasesSymptomsVegaLite();
+});
+
 /*anxiety_race = cdchealth
 .filter(d => op.includes(d.Group, 'By Race/Hispanic Ethnicity'))
 .filter(d => op.equal(d.Indicator, 'Symptoms of Anxiety Disorder'))
@@ -96,7 +106,7 @@ function drawIndicatorsRaceVegaLite() {
       vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
       vl.y({title: 'Percentage of population'}).fieldQ('Value'),
       vl.tooltip().fieldQ('Value'),
-      vl.color().fieldN('Subgroup'),
+      vl.color({title: 'Race/Ethnicity'}).fieldN('Subgroup'),
       vl.opacity().if(selection, vl.value(1)).value(0)
     )
     .width(450)
@@ -106,3 +116,36 @@ function drawIndicatorsRaceVegaLite() {
     document.getElementById('ind-race').appendChild(viewElement);
   });
 }
+
+
+// COVID cases and Anxiety/Depression 
+  function drawCasesSymptomsVegaLite() {
+    const brush = vl.selectInterval()
+    .encodings('x');
+  
+  const cases = vl.markArea({color: 'teal'})
+    .data(merge)
+    .select(brush)
+    .encode(
+      vl.x({title: 'Date'}).fieldT('date').sort('ascending'),
+      vl.y({title: 'New COVID-19 Cases'}).fieldQ('newcases')
+    ).width(600).height(325)
+  
+  const mh = vl.markCircle()
+    .data(merge)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: 'Percentage of population'}).fieldQ('Value'),
+      vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
+      vl.tooltip().fieldQ('Value'),
+      vl.opacity().if(brush, vl.value(1)).value(0.01)
+    ).width(600).height(300)
+  
+  return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
+      //.width(450)
+      //.height(450)
+      .render()
+      .then(viewElement => {
+      document.getElementById('cases-mh').appendChild(viewElement);
+    });
+  }
