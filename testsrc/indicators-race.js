@@ -1,6 +1,7 @@
 import anxiety_gender from '../static/anxiety_gender.csv';
 import all_race from '../static/all_race.csv';   // import dataset
 import merge from '../static/merge.csv';
+import newcases from '../static/newcases_period.csv';
 
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
@@ -9,9 +10,6 @@ var races = races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'N
 'Non-Hispanic Asian, single race', 'Non-Hispanic, other races and multiple races'];   // used to store data later
 var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 
 'Symptoms of Anxiety Disorder or Depressive Disorder'];
-var cdcArray = [];
-var cdcArray2 = [];
-var cdcArray3 = [];
 var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 21 - May 26',
                 'May 28 - June 2', 'June 4 - June 9', 'June 11 - June 16', 'June 18 - June 23', 
                 'June 25 - June 30', 'July 2 - July 7', 'July 9 - July 14', 'July 16 - July 21',
@@ -39,30 +37,11 @@ const options = {
 
 vl.register(vega, vegaLite, options);
 
-// Again, We use d3.csv() to process data
-d3.csv(anxiety_gender).then(function(data) {
-  data.forEach(function(d){
-    cdcArray.push(d);
-    //if (!citySet.includes(d.city)) {
-    //  citySet.push(d.city);
-    //}
-  })
-  drawAnxietyGenderVegaLite();
-});
+drawAnxietyGenderVegaLite();
+drawIndicatorsRaceVegaLite();
+drawCasesSymptomsVegaLite();
 
-d3.csv(all_race).then(function(data) {
-  data.forEach(function(d){
-    cdcArray2.push(d);
-  })
-  drawIndicatorsRaceVegaLite();
-}); 
 
-d3.csv(merge).then(function(data) {
-  data.forEach(function(d) {
-    cdcArray3.push(d);
-  })
-  drawCasesSymptomsVegaLite();
-});
 
 /*anxiety_race = cdchealth
 .filter(d => op.includes(d.Group, 'By Race/Hispanic Ethnicity'))
@@ -77,7 +56,7 @@ function drawAnxietyGenderVegaLite() {
   vl.markLine()
   .data(anxiety_gender)
   .encode(
-    vl.x().fieldO('TimePeriodLabel'),
+    vl.x().fieldO('TimePeriodLabel').sort(time_periods),
     vl.y().fieldQ('Value'),
     vl.color().fieldN('Subgroup'),
     vl.tooltip('Value')
@@ -90,6 +69,25 @@ function drawAnxietyGenderVegaLite() {
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
   });
+  /*
+  vl.markBar()
+  .data(anxiety_gender)
+  .encode(
+    vl.column().fieldN('TimePeriodLabel').sort(time_periods).spacing(10),
+    vl.y().fieldQ('Value'),
+    vl.x().fieldN('Subgroup'),
+    vl.color().fieldN('Subgroup'),
+    vl.tooltip('Value')
+  )
+  .width(50)
+  .height(450)
+  .render()
+  .then(viewElement => {
+    // render returns a promise to a DOM element containing the chart
+    // viewElement.value contains the Vega View object instance
+    document.getElementById('anxiety').appendChild(viewElement);
+  });
+  */
 }
 
 function drawIndicatorsRaceVegaLite() {
@@ -119,10 +117,10 @@ function drawIndicatorsRaceVegaLite() {
 
 
 // COVID cases and Anxiety/Depression 
-  function drawCasesSymptomsVegaLite() {
-    const brush = vl.selectInterval()
-    .encodings('x');
-  
+function drawCasesSymptomsVegaLite() {
+  const brush = vl.selectInterval()
+  .encodings('x');
+
   const cases = vl.markArea({color: 'teal'})
     .data(merge)
     .select(brush)
@@ -130,7 +128,7 @@ function drawIndicatorsRaceVegaLite() {
       vl.x({title: 'Date'}).fieldT('date').sort('ascending'),
       vl.y({title: 'New COVID-19 Cases'}).fieldQ('newcases')
     ).width(500).height(240)
-  
+
   const mh = vl.markCircle()
     .data(merge)
     .encode(
@@ -139,8 +137,8 @@ function drawIndicatorsRaceVegaLite() {
       vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
       vl.tooltip().fieldQ('Value'),
       vl.opacity().if(brush, vl.value(1)).value(0.005)
-    ).width(500).height(240)
-  
+  ).width(500).height(240)
+
   return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
       //.width(450)
       //.height(450)
@@ -148,4 +146,38 @@ function drawIndicatorsRaceVegaLite() {
       .then(viewElement => {
       document.getElementById('cases-mh').appendChild(viewElement);
     });
-  }
+}
+
+
+/*
+function drawCasesSymptomsVegaLite() {
+  const cases = vl.markLine({color: 'teal'})
+    .data(newcases)
+    .transform(
+      vl.groupby('TimePeriodLabel').
+        aggregate(vl.sum('newcases').as('period_cases')),
+    )
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: 'New COVID-19 Cases'}).fieldQ('period_cases')
+    ).width(500).height(240)
+
+  const mh = vl.markLine()
+    .data(merge)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: 'Percentage of population'}).fieldQ('Value'),
+      vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
+      vl.tooltip().fieldQ('Value'),
+  ).width(500).height(240)
+
+  return vl.layer(cases, mh)
+      .resolve({scale: {y: "independent"}})
+      .title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
+      .render()
+      .then(viewElement => {
+        document.getElementById('cases-mh').appendChild(viewElement);
+    });
+}
+*/
+
