@@ -24,6 +24,7 @@
     "parcel-plugin-static-files-copy": "^2.5.1"
   },
   "dependencies": {
-    "arquero": "^3.0.0"
+    "arquero": "^3.0.0",
+    "fullpage.js": "^3.1.0"
   }
 }

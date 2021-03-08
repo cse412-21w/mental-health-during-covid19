@@ -4,6 +4,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    scroll-behavior: smooth;
 }
 
 header, .navbar {
@@ -15,7 +16,16 @@ header, .navbar {
     margin-bottom: 1em;
 }
 
+.scrollbar {
+    position: fixed;
+    top: 350px;
+    right: 10px
+}
+
 #intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 4em;
     margin-left: 4em;
     line-height: 1.5em;
@@ -31,11 +41,42 @@ footer {
     color: white;
 }
 
-#viualization-container {
+#fullpage {
     width: 80%;
 }
 
 .description {
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.viz-container {
+    height: 100vh;
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+}
+
+#casesmh {
+    height: 100vh;
+    padding-top: 5vh;
+    padding-bottom: 20vh;
+}
+
+a, li {
+    cursor: pointer;
+    font-size: large;
+}
+
+a > span {
+    margin: 10px;
+    margin: 10px;
+}
+
+ul li::marker {
+    color: black;
+    font-size: 1em;
+}
+
+ul {
+    display: inline-block;
 }
