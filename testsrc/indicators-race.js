@@ -52,7 +52,7 @@ drawCasesSymptomsVegaLite();
 
 function drawAnxietyGenderVegaLite() {
   // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here
+  // your visualization goes here 
   vl.markLine()
   .data(anxiety_gender)
   .encode(
@@ -68,9 +68,9 @@ function drawAnxietyGenderVegaLite() {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
-  });
-  /*
-  vl.markBar()
+  }); 
+  
+  /*vl.markBar()
   .data(anxiety_gender)
   .encode(
     vl.column().fieldN('TimePeriodLabel').sort(time_periods).spacing(10),
@@ -86,8 +86,8 @@ function drawAnxietyGenderVegaLite() {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
-  });
-  */
+  }); */
+  
 }
 
 function drawIndicatorsRaceVegaLite() {
@@ -146,7 +146,7 @@ function drawCasesSymptomsVegaLite() {
       .then(viewElement => {
       document.getElementById('cases-mh').appendChild(viewElement);
     });
-}
+} 
 
 
 /*
