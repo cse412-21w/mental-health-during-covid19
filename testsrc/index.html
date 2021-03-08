@@ -19,10 +19,11 @@
      <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
      <script src="https://cdn.jsdelivr.net/npm/apache-arrow@3"></script>
      <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.js" integrity="sha512-HqbDsHIJoZ36Csd7NMupWFxC7e7aX2qm213sX+hirN+yEx/eUNlZrTWPs1dUQDEW4fMVkerv1PfMohR1WdFFJQ==" crossorigin="anonymous"></script>
      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet">
      <!-- Link vega lite js --> 
      <!-- <script type="module" src="./vega-lite/depressive-indicator.js" defer></script> -->
-     <title>Mental Health during COVID-19</title>
+     <title>Mental Heatlh during COVID-19</title>
 </head>
 <body>
 
@@ -33,6 +34,11 @@
           <a href="#firstPage">
             <span></span>
             <div class="fp-tooltip right">Introduction</div>
+          </a>
+        </li>
+        <li>
+          <a href="#covid">
+            <span></span>
           </a>
         </li>
         <li>
@@ -48,6 +54,11 @@
         </li>
         <li>
           <a href="#casesmh" >
+            <span></span>
+          </a>
+        </li>
+        <li>
+          <a href="#footer">
             <span></span>
           </a>
         </li>
@@ -86,16 +97,22 @@
       <p class="description">The trend of Depression Indicator (calculated according to symptom from previous 7 days) has its peak matches with the first two charts </p>
       <p class="description">Data from CDC</p>
     </section>
-  </div>      
 
-  <footer>
-        Copyright © Yichi Zhang, Jamie Forschmiedt, and Travis Xie  
-  </footer>
+    <section id="footer" class="viz-container">
+      <div>
+        <p>Designed and built by</p> 
+        <p>Yichi Zhang, Jamie Forschmiedt, and Travis Xie</p>
+      </div>
+      <div>
+        <p>Special Thanks to Jane and all amazing TAs</p>
+      </div>
+   </section>
+  </div>      
 
   <script src="indicators-race.js"></script>   
   <script src="covid.js"></script>  
 
-  <script src="./fullpage.js"></script>
+  <script src="fullpage.js"></script>
   <script>
     var myfullpage = new fullpage('#fullpage', {
       //options here
