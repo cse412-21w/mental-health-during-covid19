@@ -129,7 +129,7 @@ function drawIndicatorsRaceVegaLite() {
     .encode(
       vl.x({title: 'Date'}).fieldT('date').sort('ascending'),
       vl.y({title: 'New COVID-19 Cases'}).fieldQ('newcases')
-    ).width(600).height(325)
+    ).width(500).height(240)
   
   const mh = vl.markCircle()
     .data(merge)
@@ -139,7 +139,7 @@ function drawIndicatorsRaceVegaLite() {
       vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
       vl.tooltip().fieldQ('Value'),
       vl.opacity().if(brush, vl.value(1)).value(0.005)
-    ).width(600).height(300)
+    ).width(500).height(240)
   
   return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
       //.width(450)

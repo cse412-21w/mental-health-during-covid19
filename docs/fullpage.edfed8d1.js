@@ -117,133 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../static/anxiety_gender.csv":[function(require,module,exports) {
-module.exports = "/anxiety_gender.4cfea7e3.csv";
-},{}],"../static/all_race.csv":[function(require,module,exports) {
-module.exports = "/all_race.a8f6ac21.csv";
-},{}],"../static/merge.csv":[function(require,module,exports) {
-module.exports = "/merge.0213c944.csv";
-},{}],"indicators-race.js":[function(require,module,exports) {
-"use strict";
+})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-var _anxiety_gender = _interopRequireDefault(require("../static/anxiety_gender.csv"));
-
-var _all_race = _interopRequireDefault(require("../static/all_race.csv"));
-
-var _merge = _interopRequireDefault(require("../static/merge.csv"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import dataset
-"use strict"; // the code should be executed in "strict mode".
-// With strict mode, you can not, for example, use undeclared variables
-
-
-var races = races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispanic black, single race', 'Non-Hispanic Asian, single race', 'Non-Hispanic, other races and multiple races']; // used to store data later
-
-var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 'Symptoms of Anxiety Disorder or Depressive Disorder'];
-var cdcArray = [];
-var cdcArray2 = [];
-var cdcArray3 = [];
-var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 21 - May 26', 'May 28 - June 2', 'June 4 - June 9', 'June 11 - June 16', 'June 18 - June 23', 'June 25 - June 30', 'July 2 - July 7', 'July 9 - July 14', 'July 16 - July 21', 'Aug 19 - Aug 31', 'Sep 2 - Sep 14', 'Sep 16 - Sep 28', 'Sep 30 - Oct 12', 'Oct 14 - Oct 26', 'Oct 28 - Nov 9', 'Nov 11 - Nov 23', 'Nov 25 - Dec 7', 'Dec 9 - Dec 21', 'Jan 6 - Jan 18', 'Jan 20 - Feb 1'];
-var options = {
-  config: {// Vega-Lite default configuration
-  },
-  init: function init(view) {
-    // initialize tooltip handler
-    view.tooltip(new vegaTooltip.Handler().call);
-  },
-  view: {
-    // view constructor options
-    // remove the loader if you don't want to default to vega-datasets!
-    //   loader: vega.loader({
-    //     baseURL: "",
-    //   }),
-    renderer: "canvas"
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
-};
-vl.register(vega, vegaLite, options); // Again, We use d3.csv() to process data
 
-d3.csv(_anxiety_gender.default).then(function (data) {
-  data.forEach(function (d) {
-    cdcArray.push(d); //if (!citySet.includes(d.city)) {
-    //  citySet.push(d.city);
-    //}
-  });
-  drawAnxietyGenderVegaLite();
-});
-d3.csv(_all_race.default).then(function (data) {
-  data.forEach(function (d) {
-    cdcArray2.push(d);
-  });
-  drawIndicatorsRaceVegaLite();
-});
-d3.csv(_merge.default).then(function (data) {
-  data.forEach(function (d) {
-    cdcArray3.push(d);
-  });
-  drawCasesSymptomsVegaLite();
-});
-/*anxiety_race = cdchealth
-.filter(d => op.includes(d.Group, 'By Race/Hispanic Ethnicity'))
-.filter(d => op.equal(d.Indicator, 'Symptoms of Anxiety Disorder'))
-.filter(d => !op.includes(d.TimePeriodLabel, 'July 22 - Aug 18'))
-.filter(d => !op.includes(d.TimePeriodLabel, 'Dec 22 - Jan 5')) */
-
-function drawAnxietyGenderVegaLite() {
-  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here
-  vl.markLine().data(_anxiety_gender.default).encode(vl.x().fieldO('TimePeriodLabel'), vl.y().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.tooltip('Value')).width(450).height(450).render().then(function (viewElement) {
-    // render returns a promise to a DOM element containing the chart
-    // viewElement.value contains the Vega View object instance
-    document.getElementById('anxiety').appendChild(viewElement);
-  });
+  return bundleURL;
 }
 
-function drawIndicatorsRaceVegaLite() {
-  var selection = vl.selectSingle('Select').fields('Indicator', 'Subgroup').init({
-    Indicator: 'Symptoms of Anxiety Disorder',
-    Subgroup: 'Non-Hispanic black, single race'
-  }).bind({
-    Indicator: vl.menu(indicators),
-    Subgroup: vl.menu(races)
-  });
-  vl.markCircle().data(_all_race.default).title('Symptoms of Anxiety and Depressive Disorder, April 2020 - February 2021').select(selection).encode(vl.x({
-    title: 'Time Period'
-  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
-    title: 'Percentage of population'
-  }).fieldQ('Value'), vl.tooltip().fieldQ('Value'), vl.color({
-    title: 'Race/Ethnicity'
-  }).fieldN('Subgroup'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
-    document.getElementById('ind-race').appendChild(viewElement);
-  });
-} // COVID cases and Anxiety/Depression 
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
 
-function drawCasesSymptomsVegaLite() {
-  var brush = vl.selectInterval().encodings('x');
-  var cases = vl.markArea({
-    color: 'teal'
-  }).data(_merge.default).select(brush).encode(vl.x({
-    title: 'Date'
-  }).fieldT('date').sort('ascending'), vl.y({
-    title: 'New COVID-19 Cases'
-  }).fieldQ('newcases')).width(500).height(240);
-  var mh = vl.markCircle().data(_merge.default).encode(vl.x({
-    title: 'Time Period'
-  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
-    title: 'Percentage of population'
-  }).fieldQ('Value'), vl.color().fieldN('SymptomType').legend({
-    orient: 'bottom',
-    title: 'Symptom Type'
-  }), vl.tooltip().fieldQ('Value'), vl.opacity().if(brush, vl.value(1)).value(0.005)).width(500).height(240);
-  return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021') //.width(450)
-  //.height(450)
-  .render().then(function (viewElement) {
-    document.getElementById('cases-mh').appendChild(viewElement);
-  });
+  return '/';
 }
-},{"../static/anxiety_gender.csv":"../static/anxiety_gender.csv","../static/all_race.csv":"../static/all_race.csv","../static/merge.csv":"../static/merge.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style/fullpage.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -447,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","indicators-race.js"], null)
-//# sourceMappingURL=/indicators-race.e753a734.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/fullpage.edfed8d1.js.map

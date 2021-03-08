@@ -228,7 +228,7 @@ function drawCasesSymptomsVegaLite() {
     title: 'Date'
   }).fieldT('date').sort('ascending'), vl.y({
     title: 'New COVID-19 Cases'
-  }).fieldQ('newcases')).width(600).height(325);
+  }).fieldQ('newcases')).width(500).height(240);
   var mh = vl.markCircle().data(_merge.default).encode(vl.x({
     title: 'Time Period'
   }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
@@ -236,7 +236,7 @@ function drawCasesSymptomsVegaLite() {
   }).fieldQ('Value'), vl.color().fieldN('SymptomType').legend({
     orient: 'bottom',
     title: 'Symptom Type'
-  }), vl.tooltip().fieldQ('Value'), vl.opacity().if(brush, vl.value(1)).value(0.005)).width(600).height(300);
+  }), vl.tooltip().fieldQ('Value'), vl.opacity().if(brush, vl.value(1)).value(0.005)).width(500).height(240);
   return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021') //.width(450)
   //.height(450)
   .render().then(function (viewElement) {
@@ -244,4 +244,4 @@ function drawCasesSymptomsVegaLite() {
   });
 }
 },{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.cb86d503.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.1e975237.js.map
