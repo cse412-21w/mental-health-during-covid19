@@ -1,6 +1,4 @@
 body, html {
-
-    font-family: 'Shippori Mincho B1', serif;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -8,17 +6,12 @@ body, html {
     align-items: center;
     scroll-behavior: smooth;
     width: 100%;
-}
-
-.scrollbar {
-    position: fixed;
-    top: 350px;
-    right: 10px
+    overflow: hidden; 
+    height: 100%;
 }
 
 #fullpage {
     font-family: 'Shippori Mincho B1', serif;
-    width: 100%;
 }
 
 .viz-container {
@@ -60,7 +53,6 @@ body, html {
     /* bottom, image */
     url("../covid.jpg");
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
 }
 
@@ -69,4 +61,9 @@ body, html {
     height: .8em;
     width: 7em;
     background-color: #d92626;
+}
+
+.fp-tooltip {
+    font-family: 'Shippori Mincho B1', serif !important;
+    color: black !important;
 }

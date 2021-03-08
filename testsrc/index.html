@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="./style/style.css">
-     <!-- jQuery init -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- fullpage.js -->
-    <link rel="stylesheet" href="./style/fullpage.css">
-    <!-- <script type="text/javascript" src="jquery.fullPage.min.js" defer></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.js" integrity="sha512-HqbDsHIJoZ36Csd7NMupWFxC7e7aX2qm213sX+hirN+yEx/eUNlZrTWPs1dUQDEW4fMVkerv1PfMohR1WdFFJQ==" crossorigin="anonymous"></script>
+    <!-- fullpage.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.css" integrity="sha512-RVmrWua3k1yTDEOg4Yzs2bK5+Thh7nM6jrhDq/6/5/Mwa0JbYe4pP4YMK5sqghKz01T3DgrwYc57Jaf1PSurCg==" crossorigin="anonymous" />
      <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
@@ -38,14 +33,14 @@
 
   <div id="fullpage" class="fullpage-wrapper">
 
-    <section id="firstPage" class="viz-container section fp-section" data-anchor="firstPage">
+    <section id="firstPage" class="viz-container section fp-section">
       <h1 id="title">Mental Health and Covid-19</h1>
       <br>
       <h3 id="subtitle">Explore the effect of Covid-19 on Mental health status in America</h3>
       <div class="divider"></div>
     </section>
 
-    <section id="secondPage" class="viz-container section fp-section">
+    <section id="secondPage" class="viz-container section fp-section"> 
       <h5>Covid-19 Data By State:</h5>    
       <div id='covid-data'></div>
     </section>
@@ -61,7 +56,7 @@
     </section>
   
     <section id='fifthPage' class="viz-container section fp-section">
-      <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5>
+      <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5> 
       <div id='cases-mh'></div>
     </section>
 
@@ -85,57 +80,19 @@
    </section>
   </div> 
   
-  <div id="fp-nav" class="scrollbar">
-    <ul>
-      <li>
-        <a href="#firstPage">
-          <span></span>
-          <div class="fp-tooltip left">Introduction</div>
-        </a>
-      </li>
-      <li>
-        <a href="#secondPage">
-          <span></span>
-
-          <div class="fp-tooltip left">Introduction</div>
-        </a>
-      </li>
-      <li>
-        <a href="#thirdPage">
-          <span></span>
-        </a>
-      </li>
-      <li>
-        <a href="#fourthPage">
-          <span></span>
-        </a>
-        
-      </li>
-      <li>
-        <a href="#fifthPage">
-          <span></span>
-        </a>
-      </li>
-      <li>
-        <a href="#sixthPage">
-          <span></span>
-        </a>
-      </li>
-    </ul>
-  </div>
-
   <script src="indicators-race.js"></script>   
   <script src="covid.js"></script>  
 
+  <!-- enabling fullpage.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.js" integrity="sha512-HqbDsHIJoZ36Csd7NMupWFxC7e7aX2qm213sX+hirN+yEx/eUNlZrTWPs1dUQDEW4fMVkerv1PfMohR1WdFFJQ==" crossorigin="anonymous"></script>
   <script>
-    var myfullpage = new fullpage('#fullpage', {
+    new fullpage('#fullpage', {
       //options here
-      autoScrolling:true,
-      scrollHorizontally: true
+      autoScrolling: true,
+      navigation: true,
+      navigationTooltips: ['Introduction', "viz1", "viz1", "viz1", "viz1", "Source and About Us"],
+      showActiveTooltip: true
     });
-
-    //methods
-    fullpage_api.setAllowScrolling(false);
   </script>
 </body>
 </html>
