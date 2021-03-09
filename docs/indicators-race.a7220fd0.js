@@ -125,6 +125,8 @@ module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merge.1bb3225e.csv";
 },{}],"SOLR":[function(require,module,exports) {
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/newcases_period.77f7c162.csv";
+},{}],"R8y1":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_gender.d23d63f8.csv";
 },{}],"lQjA":[function(require,module,exports) {
 "use strict";
 
@@ -135,6 +137,8 @@ var _all_race = _interopRequireDefault(require("../static/all_race.csv"));
 var _merge = _interopRequireDefault(require("../static/merge.csv"));
 
 var _newcases_period = _interopRequireDefault(require("../static/newcases_period.csv"));
+
+var _all_gender = _interopRequireDefault(require("../static/all_gender.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -164,7 +168,7 @@ var options = {
   }
 };
 vl.register(vega, vegaLite, options);
-drawAnxietyGenderVegaLite();
+drawIndicatorsGenderVegaLite();
 drawIndicatorsRaceVegaLite();
 drawCasesSymptomsVegaLite();
 /*anxiety_race = cdchealth
@@ -198,6 +202,27 @@ function drawAnxietyGenderVegaLite() {
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
   }); */
+}
+
+function drawIndicatorsGenderVegaLite() {
+  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
+  // your visualization goes here 
+  var selection2 = vl.selectSingle('Select').fields('Indicator').init({
+    Indicator: 'Symptoms of Anxiety Disorder'
+  }).bind({
+    Indicator: vl.menu(indicators)
+  });
+  return vl.markCircle().data(_all_gender.default).title('Symptoms of Depression and Anxiety by Gender, April 2020 - February 2021').select(selection2).encode(vl.x({
+    title: 'Time Period'
+  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
+    title: '% of the US Adult Population'
+  }).fieldQ('Value'), vl.color({
+    title: 'Gender'
+  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+    // render returns a promise to a DOM element containing the chart
+    // viewElement.value contains the Vega View object instance
+    document.getElementById('ind-gender').appendChild(viewElement);
+  });
 }
 
 function drawIndicatorsRaceVegaLite() {
@@ -274,5 +299,5 @@ function drawCasesSymptomsVegaLite() {
     });
 }
 */
-},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/newcases_period.csv":"SOLR"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.40fdeb63.js.map
+},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/newcases_period.csv":"SOLR","../static/all_gender.csv":"R8y1"}]},{},["lQjA"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.a7220fd0.js.map
