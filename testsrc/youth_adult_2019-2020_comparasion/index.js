@@ -28,7 +28,7 @@ drawYouthAdultComparasionVegaLite();
 function drawYouthAdultComparasionVegaLite() {
 
   const adultChart = vl.markBar()
-    .title({"text": "Total Adult mental health screen counts between 2019 and 2020 ", "subtitle": "Data source: Mental Health America 2019-2020 Yearly Report", "subtitlePadding": 10, "titlePadding": 10})
+    .title({"text": "Total Adult mental health screener counts between 2019 and 2020 "})
     .data(adult_aggregate_data)
     .encode(
       vl.x().fieldN('year').axis({"labelAngle": 0}),
@@ -38,7 +38,7 @@ function drawYouthAdultComparasionVegaLite() {
     .height(400)
   
   const youthChart = vl.markBar()
-    .title({"text": "Percentage of Youth with at least one severe MDE", "subtitle": "Data source: Mental Health America 2019-2020 Yearly Report", "subtitlePadding": 10, "titlePadding": 10})
+    .title({"text": "Count of Youth with at least one severe Major Depressive Episode (MDE) in a given year"})
     .data(youth_aggregate_data)
     .encode(
         vl.x().fieldN('year').axis({"labelAngle": 0}),

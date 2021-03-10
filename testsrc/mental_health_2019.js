@@ -50,7 +50,7 @@ function drawLineVegaLite() {
         vl.color().fieldN('race'),
         vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])
     )
-    .width(100)
+    .width(150)
     .height(400)
     .render()
     .then(viewElement => {

@@ -170,6 +170,7 @@ d3.csv(_usStates.default).then(function (data) {
   });
   drawLineVegaLite();
 });
+stateArray = stateArray.sort();
 
 function drawLineVegaLite() {
   var selection = vl.selectSingle('Select').fields('state').init({
@@ -184,4 +185,4 @@ function drawLineVegaLite() {
   });
 }
 },{"../static/us-states.csv":"op3u"}]},{},["Uvwv"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/covid.ec40ac0b.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/covid.22ccf8ba.js.map
