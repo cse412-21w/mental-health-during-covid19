@@ -125,6 +125,8 @@ module.exports = "/all_race.a8f6ac21.csv";
 module.exports = "/merge.0213c944.csv";
 },{}],"../static/newcases_period.csv":[function(require,module,exports) {
 module.exports = "/newcases_period.38e5cfac.csv";
+},{}],"../static/all_gender.csv":[function(require,module,exports) {
+module.exports = "/all_gender.05223c4d.csv";
 },{}],"indicators-race.js":[function(require,module,exports) {
 "use strict";
 
@@ -135,6 +137,8 @@ var _all_race = _interopRequireDefault(require("../static/all_race.csv"));
 var _merge = _interopRequireDefault(require("../static/merge.csv"));
 
 var _newcases_period = _interopRequireDefault(require("../static/newcases_period.csv"));
+
+var _all_gender = _interopRequireDefault(require("../static/all_gender.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -164,7 +168,7 @@ var options = {
   }
 };
 vl.register(vega, vegaLite, options);
-drawAnxietyGenderVegaLite();
+drawIndicatorsGenderVegaLite();
 drawIndicatorsRaceVegaLite();
 drawCasesSymptomsVegaLite();
 /*anxiety_race = cdchealth
@@ -198,6 +202,27 @@ function drawAnxietyGenderVegaLite() {
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
   }); */
+}
+
+function drawIndicatorsGenderVegaLite() {
+  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
+  // your visualization goes here 
+  var selection2 = vl.selectSingle('Select').fields('Indicator').init({
+    Indicator: 'Symptoms of Anxiety Disorder'
+  }).bind({
+    Indicator: vl.menu(indicators)
+  });
+  return vl.markCircle().data(_all_gender.default).title('Symptoms of Depression and Anxiety by Gender, April 2020 - February 2021').select(selection2).encode(vl.x({
+    title: 'Time Period'
+  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
+    title: '% of the US Adult Population'
+  }).fieldQ('Value'), vl.color({
+    title: 'Gender'
+  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+    // render returns a promise to a DOM element containing the chart
+    // viewElement.value contains the Vega View object instance
+    document.getElementById('ind-gender').appendChild(viewElement);
+  });
 }
 
 function drawIndicatorsRaceVegaLite() {
@@ -274,7 +299,7 @@ function drawCasesSymptomsVegaLite() {
     });
 }
 */
-},{"../static/anxiety_gender.csv":"../static/anxiety_gender.csv","../static/all_race.csv":"../static/all_race.csv","../static/merge.csv":"../static/merge.csv","../static/newcases_period.csv":"../static/newcases_period.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../static/anxiety_gender.csv":"../static/anxiety_gender.csv","../static/all_race.csv":"../static/all_race.csv","../static/merge.csv":"../static/merge.csv","../static/newcases_period.csv":"../static/newcases_period.csv","../static/all_gender.csv":"../static/all_gender.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -302,7 +327,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55544" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65041" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
