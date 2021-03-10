@@ -123,6 +123,8 @@ module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/anxi
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_race.56d05b74.csv";
 },{}],"L1Tp":[function(require,module,exports) {
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merge.1bb3225e.csv";
+},{}],"R8y1":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_gender.d23d63f8.csv";
 },{}],"lQjA":[function(require,module,exports) {
 "use strict";
 
@@ -132,9 +134,12 @@ var _all_race = _interopRequireDefault(require("../static/all_race.csv"));
 
 var _merge = _interopRequireDefault(require("../static/merge.csv"));
 
+var _all_gender = _interopRequireDefault(require("../static/all_gender.csv"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import dataset
+//import newcases from '../static/newcases_period.csv';
 "use strict"; // the code should be executed in "strict mode".
 // With strict mode, you can not, for example, use undeclared variables
 
@@ -142,9 +147,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var races = races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispanic black, single race', 'Non-Hispanic Asian, single race', 'Non-Hispanic, other races and multiple races']; // used to store data later
 
 var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 'Symptoms of Anxiety Disorder or Depressive Disorder'];
-var cdcArray = [];
-var cdcArray2 = [];
-var cdcArray3 = [];
 var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 21 - May 26', 'May 28 - June 2', 'June 4 - June 9', 'June 11 - June 16', 'June 18 - June 23', 'June 25 - June 30', 'July 2 - July 7', 'July 9 - July 14', 'July 16 - July 21', 'Aug 19 - Aug 31', 'Sep 2 - Sep 14', 'Sep 16 - Sep 28', 'Sep 30 - Oct 12', 'Oct 14 - Oct 26', 'Oct 28 - Nov 9', 'Nov 11 - Nov 23', 'Nov 25 - Dec 7', 'Dec 9 - Dec 21', 'Jan 6 - Jan 18', 'Jan 20 - Feb 1'];
 var options = {
   config: {// Vega-Lite default configuration
@@ -162,28 +164,10 @@ var options = {
     renderer: "canvas"
   }
 };
-vl.register(vega, vegaLite, options); // Again, We use d3.csv() to process data
-
-d3.csv(_anxiety_gender.default).then(function (data) {
-  data.forEach(function (d) {
-    cdcArray.push(d); //if (!citySet.includes(d.city)) {
-    //  citySet.push(d.city);
-    //}
-  });
-  drawAnxietyGenderVegaLite();
-});
-d3.csv(_all_race.default).then(function (data) {
-  data.forEach(function (d) {
-    cdcArray2.push(d);
-  });
-  drawIndicatorsRaceVegaLite();
-});
-d3.csv(_merge.default).then(function (data) {
-  data.forEach(function (d) {
-    cdcArray3.push(d);
-  });
-  drawCasesSymptomsVegaLite();
-});
+vl.register(vega, vegaLite, options);
+drawIndicatorsGenderVegaLite();
+drawIndicatorsRaceVegaLite();
+drawCasesSymptomsVegaLite();
 /*anxiety_race = cdchealth
 .filter(d => op.includes(d.Group, 'By Race/Hispanic Ethnicity'))
 .filter(d => op.equal(d.Indicator, 'Symptoms of Anxiety Disorder'))
@@ -192,11 +176,49 @@ d3.csv(_merge.default).then(function (data) {
 
 function drawAnxietyGenderVegaLite() {
   // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here
-  vl.markLine().data(_anxiety_gender.default).encode(vl.x().fieldO('TimePeriodLabel'), vl.y().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.tooltip('Value')).width(450).height(450).render().then(function (viewElement) {
+  // your visualization goes here 
+  vl.markLine().data(_anxiety_gender.default).encode(vl.x().fieldO('TimePeriodLabel').sort(time_periods), vl.y().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.tooltip('Value')).width(450).height(450).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
+  });
+  /*vl.markBar()
+  .data(anxiety_gender)
+  .encode(
+    vl.column().fieldN('TimePeriodLabel').sort(time_periods).spacing(10),
+    vl.y().fieldQ('Value'),
+    vl.x().fieldN('Subgroup'),
+    vl.color().fieldN('Subgroup'),
+    vl.tooltip('Value')
+  )
+  .width(50)
+  .height(450)
+  .render()
+  .then(viewElement => {
+    // render returns a promise to a DOM element containing the chart
+    // viewElement.value contains the Vega View object instance
+    document.getElementById('anxiety').appendChild(viewElement);
+  }); */
+}
+
+function drawIndicatorsGenderVegaLite() {
+  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
+  // your visualization goes here 
+  var selection2 = vl.selectSingle('Select').fields('Indicator').init({
+    Indicator: 'Symptoms of Anxiety Disorder'
+  }).bind({
+    Indicator: vl.menu(indicators)
+  });
+  return vl.markCircle().data(_all_gender.default).title('Symptoms of Depression and Anxiety by Gender, April 2020 - February 2021').select(selection2).encode(vl.x({
+    title: 'Time Period'
+  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
+    title: '% of the US Adult Population'
+  }).fieldQ('Value'), vl.color({
+    title: 'Gender'
+  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+    // render returns a promise to a DOM element containing the chart
+    // viewElement.value contains the Vega View object instance
+    document.getElementById('ind-gender').appendChild(viewElement);
   });
 }
 
@@ -243,5 +265,36 @@ function drawCasesSymptomsVegaLite() {
     document.getElementById('cases-mh').appendChild(viewElement);
   });
 }
-},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.1e975237.js.map
+/*
+function drawCasesSymptomsVegaLite() {
+  const cases = vl.markLine({color: 'teal'})
+    .data(newcases)
+    .transform(
+      vl.groupby('TimePeriodLabel').
+        aggregate(vl.sum('newcases').as('period_cases')),
+    )
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: 'New COVID-19 Cases'}).fieldQ('period_cases')
+    ).width(500).height(240)
+
+  const mh = vl.markLine()
+    .data(merge)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: 'Percentage of population'}).fieldQ('Value'),
+      vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
+      vl.tooltip().fieldQ('Value'),
+  ).width(500).height(240)
+
+  return vl.layer(cases, mh)
+      .resolve({scale: {y: "independent"}})
+      .title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
+      .render()
+      .then(viewElement => {
+        document.getElementById('cases-mh').appendChild(viewElement);
+    });
+}
+*/
+},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/all_gender.csv":"R8y1"}]},{},["lQjA"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.c0af6f83.js.map

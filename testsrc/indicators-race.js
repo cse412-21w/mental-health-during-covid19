@@ -1,7 +1,8 @@
 import anxiety_gender from '../static/anxiety_gender.csv';
 import all_race from '../static/all_race.csv';   // import dataset
 import merge from '../static/merge.csv';
-import newcases from '../static/newcases_period.csv';
+//import newcases from '../static/newcases_period.csv';
+import all_gender from '../static/all_gender.csv';
 
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
@@ -37,7 +38,7 @@ const options = {
 
 vl.register(vega, vegaLite, options);
 
-drawAnxietyGenderVegaLite();
+drawIndicatorsGenderVegaLite();
 drawIndicatorsRaceVegaLite();
 drawCasesSymptomsVegaLite();
 
@@ -52,7 +53,7 @@ drawCasesSymptomsVegaLite();
 
 function drawAnxietyGenderVegaLite() {
   // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here
+  // your visualization goes here 
   vl.markLine()
   .data(anxiety_gender)
   .encode(
@@ -68,9 +69,9 @@ function drawAnxietyGenderVegaLite() {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
-  });
-  /*
-  vl.markBar()
+  }); 
+  
+  /*vl.markBar()
   .data(anxiety_gender)
   .encode(
     vl.column().fieldN('TimePeriodLabel').sort(time_periods).spacing(10),
@@ -86,8 +87,37 @@ function drawAnxietyGenderVegaLite() {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('anxiety').appendChild(viewElement);
-  });
-  */
+  }); */
+  
+}
+
+function drawIndicatorsGenderVegaLite() {
+  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
+  // your visualization goes here 
+  const selection2 = vl.selectSingle('Select')
+  .fields('Indicator')
+  .init({Indicator: 'Symptoms of Anxiety Disorder'})
+  .bind({Indicator: vl.menu(indicators)});
+
+  return vl.markCircle()
+    .data(all_gender)
+    .title('Symptoms of Depression and Anxiety by Gender, April 2020 - February 2021')
+    .select(selection2)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
+      vl.color({title: 'Gender'}).fieldN('Subgroup'),
+      vl.tooltip('Value'),
+      vl.opacity().if(selection2, vl.value(1)).value(0)
+  )
+  .width(450)
+  .height(450)
+  .render()
+  .then(viewElement => {
+    // render returns a promise to a DOM element containing the chart
+    // viewElement.value contains the Vega View object instance
+    document.getElementById('ind-gender').appendChild(viewElement);
+  }); 
 }
 
 function drawIndicatorsRaceVegaLite() {
@@ -146,7 +176,7 @@ function drawCasesSymptomsVegaLite() {
       .then(viewElement => {
       document.getElementById('cases-mh').appendChild(viewElement);
     });
-}
+} 
 
 
 /*

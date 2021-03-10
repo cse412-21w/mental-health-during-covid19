@@ -4,29 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/fullpage.css">
+    <!-- fullpage.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.css" integrity="sha512-RVmrWua3k1yTDEOg4Yzs2bK5+Thh7nM6jrhDq/6/5/Mwa0JbYe4pP4YMK5sqghKz01T3DgrwYc57Jaf1PSurCg==" crossorigin="anonymous" />
+     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
      <!-- For using d3 -->
-     <script src="https://d3js.org/d3.v6.min.js"></script>
-     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-     <!-- For using vega-lite -->
-     <script src="https://cdn.jsdelivr.net/npm/vega"></script>
-     <script src="https://cdn.jsdelivr.net/npm/vega-lite"></script>
-     <script src="https://cdn.jsdelivr.net/npm/vega-lite-api"></script>
-     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
-     <!-- For using Arquero -->
-     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-     <script src="https://cdn.jsdelivr.net/npm/apache-arrow@3"></script>
-     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.js" integrity="sha512-HqbDsHIJoZ36Csd7NMupWFxC7e7aX2qm213sX+hirN+yEx/eUNlZrTWPs1dUQDEW4fMVkerv1PfMohR1WdFFJQ==" crossorigin="anonymous"></script>
-     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet">
-     <!-- Link vega lite js --> 
-     <!-- <script type="module" src="./vega-lite/depressive-indicator.js" defer></script> -->
-     <title>Mental Heatlh during COVID-19</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- For using vega-lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
+    <!-- For using Arquero -->
+    <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apache-arrow@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet">
+    <!-- Link vega lite js --> 
+    <!-- <script type="module" src="./vega-lite/depressive-indicator.js" defer></script> -->
+    <title>Mental Health during COVID-19</title>
 </head>
 <body>
 
+<<<<<<< HEAD
   <div id="fullpage">
     <div id="fp-nav" class="scrollbar">
       <ul>
@@ -70,31 +75,43 @@
         </li>
       </ul>
     </div>
+=======
+  <div id="fullpage" class="fullpage-wrapper">
+>>>>>>> 2cb3765a65dc7d2d770c5101291f36ee24282fbf
 
-    <section id="firstPage" class="viz-container">
-      <h1 class="title" id="proj-title">Mental Health and Covid-19</h1>
+    <section id="firstPage" class="viz-container section fp-section">
+      <h1 id="title">Mental Health and Covid-19</h1>
+      <br>
+      <h3 id="subtitle">Explore the effect of Covid-19 on Mental health status in America</h3>
+      <div class="divider"></div>
     </section>
 
-    <section id="covid" class="viz-container">
+    <section id="secondPage" class="viz-container section fp-section"> 
+      <h5>Aggregate comparasion</h5>    
+      <div id='aggegrate-comparasion'></div>
+    </section>
+
+    <section id="secondPage" class="viz-container section fp-section"> 
       <h5>Covid-19 Data By State:</h5>    
       <div id='covid-data'></div>
     </section>
 
-    <section id="anxietygender" class="viz-container">
-      <h5>Anxiety by gender:</h5>    
-      <div id='anxiety'></div>
+    <section id="thirdPage" class="viz-container section fp-section">
+      <h5>Anxiety & Depression Symptoms by gender:</h5>    
+      <div id='ind-gender'></div>
     </section>
   
-    <section id="mhrace" class="viz-container">
+    <section id="fourthPage" class="viz-container section fp-section">
       <h5>Anxiety & Depression Symptoms by race:</h5>
       <div id='ind-race'></div>
     </section>
   
-    <section id='casesmh' class="viz-container">
-      <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5>
+    <section id='fifthPage' class="viz-container section fp-section">
+      <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5> 
       <div id='cases-mh'></div>
     </section>
 
+<<<<<<< HEAD
     <section id='md2019' class="viz-container">
       <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5>
       <div id='md_2019'></div>
@@ -102,38 +119,47 @@
 
     <section class="viz-container">
        <!--- <div id="vega-depressive-indicator">
+=======
+    <!-- <section class="viz-container section fp-section">
+       - <div id="vega-depressive-indicator">
+>>>>>>> 2cb3765a65dc7d2d770c5101291f36ee24282fbf
        <img src="./vega-lite/vgl-static.png" alt="A vega-lite data visualization">
-       </div> --->
+       -
 
       <p class="description">The trend of Depression Indicator (calculated according to symptom from previous 7 days) has its peak matches with the first two charts </p>
       <p class="description">Data from CDC</p>
-    </section>
+    </section> -->
 
-    <section id="footer" class="viz-container">
+    <section id="sixthPage" class="viz-container section fp-section">
       <div>
         <p>Designed and built by</p> 
         <p>Yichi Zhang, Jamie Forschmiedt, and Travis Xie</p>
       </div>
       <div>
-        <p>Special Thanks to Jane and all amazing TAs</p>
+        <p>Special Thanks to Dr. Hoffswell and all of our amazing TAs</p>
       </div>
    </section>
-  </div>      
-
+  </div> 
+  
   <script src="indicators-race.js"></script>   
+<<<<<<< HEAD
   <script src="covid.js"></script> 
   <script src="mental_health_2019.js"></script> 
+=======
+  <script src="covid.js"></script>  
+  <script src="./youth_adult_2019-2020_comparasion//index.js"></script>  
+>>>>>>> 2cb3765a65dc7d2d770c5101291f36ee24282fbf
 
-  <script src="fullpage.js"></script>
+  <!-- enabling fullpage.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.js" integrity="sha512-HqbDsHIJoZ36Csd7NMupWFxC7e7aX2qm213sX+hirN+yEx/eUNlZrTWPs1dUQDEW4fMVkerv1PfMohR1WdFFJQ==" crossorigin="anonymous"></script>
   <script>
-    var myfullpage = new fullpage('#fullpage', {
+    new fullpage('#fullpage', {
       //options here
-      autoScrolling:true,
-      scrollHorizontally: true
+      autoScrolling: true,
+      navigation: true,
+      navigationTooltips: ['Introduction', "viz1", "viz1", "viz1", "viz1", "viz1", "Source and About Us"],
+      showActiveTooltip: true
     });
-
-    //methods
-    fullpage_api.setAllowScrolling(false);
   </script>
 </body>
 </html>

@@ -26,8 +26,8 @@ body, html {
       rgba(0, 0, 0, 0.7), 
       rgba(0, 0, 0, 0.7)
     ),
-    /* bottom, image */
-    url("../OIP.jpg");
+    
+    url("https://cse412-21w.github.io/mental-health-during-covid19/OIP.9938ca13.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -50,8 +50,8 @@ body, html {
       rgba(0, 0, 0, 0.7), 
       rgba(0, 0, 0, 0.7)
     ),
-    /* bottom, image */
-    url("../covid.jpg");
+    
+    url("https://cse412-21w.github.io/mental-health-during-covid19/covid.67d8424e.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -67,3 +67,6 @@ body, html {
     font-family: 'Shippori Mincho B1', serif !important;
     color: black !important;
 }
+
+
+/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.01647daf.css.map */
