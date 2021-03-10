@@ -123,8 +123,6 @@ module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/anxi
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_race.56d05b74.csv";
 },{}],"L1Tp":[function(require,module,exports) {
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merge.1bb3225e.csv";
-},{}],"SOLR":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/newcases_period.77f7c162.csv";
 },{}],"R8y1":[function(require,module,exports) {
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_gender.d23d63f8.csv";
 },{}],"lQjA":[function(require,module,exports) {
@@ -136,13 +134,12 @@ var _all_race = _interopRequireDefault(require("../static/all_race.csv"));
 
 var _merge = _interopRequireDefault(require("../static/merge.csv"));
 
-var _newcases_period = _interopRequireDefault(require("../static/newcases_period.csv"));
-
 var _all_gender = _interopRequireDefault(require("../static/all_gender.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import dataset
+//import newcases from '../static/newcases_period.csv';
 "use strict"; // the code should be executed in "strict mode".
 // With strict mode, you can not, for example, use undeclared variables
 
@@ -299,5 +296,5 @@ function drawCasesSymptomsVegaLite() {
     });
 }
 */
-},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/newcases_period.csv":"SOLR","../static/all_gender.csv":"R8y1"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.a7220fd0.js.map
+},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/all_gender.csv":"R8y1"}]},{},["lQjA"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.c0af6f83.js.map

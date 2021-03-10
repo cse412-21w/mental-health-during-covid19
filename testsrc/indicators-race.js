@@ -1,7 +1,7 @@
 import anxiety_gender from '../static/anxiety_gender.csv';
 import all_race from '../static/all_race.csv';   // import dataset
 import merge from '../static/merge.csv';
-import newcases from '../static/newcases_period.csv';
+//import newcases from '../static/newcases_period.csv';
 import all_gender from '../static/all_gender.csv';
 
 "use strict";     // the code should be executed in "strict mode".
