@@ -41,6 +41,8 @@ d3.csv(casedata).then(function(data) {
   drawLineVegaLite();
 });
 
+stateArray = stateArray.sort();
+
 function drawLineVegaLite() {
 
   const selection = vl.selectSingle('Select')
