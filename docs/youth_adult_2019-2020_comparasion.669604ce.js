@@ -152,19 +152,11 @@ drawYouthAdultComparasionVegaLite();
 
 function drawYouthAdultComparasionVegaLite() {
   var adultChart = vl.markBar().title({
-    "text": "Total Adult mental health screen counts between 2019 and 2020 ",
-    "subtitle": "Data source: Mental Health America 2019-2020 Yearly Report",
-    "subtitlePadding": 10,
-    "titlePadding": 10
+    "text": "Number of Adults With Any Mental Illness, 2019 and 2020"
   }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x().fieldN('year').axis({
     "labelAngle": 0
   }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
-  var youthChart = vl.markBar().title({
-    "text": "Percentage of Youth with at least one severe MDE",
-    "subtitle": "Data source: Mental Health America 2019-2020 Yearly Report",
-    "subtitlePadding": 10,
-    "titlePadding": 10
-  }).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
+  var youthChart = vl.markBar().title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
     "labelAngle": 0
   }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
   vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
@@ -172,4 +164,4 @@ function drawYouthAdultComparasionVegaLite() {
   });
 }
 },{"../../static/adult_mh_prevalance_aggregate.csv":"kWp5","../../static/youth_prevalance_of_mde_aggregate.csv":"TLC3"}]},{},["Pw3E"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/youth_adult_2019-2020_comparasion.a1cb29fb.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/youth_adult_2019-2020_comparasion.669604ce.js.map

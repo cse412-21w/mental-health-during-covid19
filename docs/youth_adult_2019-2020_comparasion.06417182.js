@@ -152,19 +152,11 @@ drawYouthAdultComparasionVegaLite();
 
 function drawYouthAdultComparasionVegaLite() {
   var adultChart = vl.markBar().title({
-    "text": "Total Adult mental health screen counts between 2019 and 2020 ",
-    "subtitle": "Data source: Mental Health America 2019-2020 Yearly Report",
-    "subtitlePadding": 10,
-    "titlePadding": 10
+    "text": "Number of Adults With Any Mental Illness, 2019 and 2020"
   }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x().fieldN('year').axis({
     "labelAngle": 0
   }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
-  var youthChart = vl.markBar().title({
-    "text": "Percentage of Youth with at least one severe MDE",
-    "subtitle": "Data source: Mental Health America 2019-2020 Yearly Report",
-    "subtitlePadding": 10,
-    "titlePadding": 10
-  }).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
+  var youthChart = vl.markBar().title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
     "labelAngle": 0
   }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
   vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
@@ -199,7 +191,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57113" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51978" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

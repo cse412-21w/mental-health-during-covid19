@@ -166,11 +166,11 @@ drawLineVegaLite();
 function drawLineVegaLite() {
   vl.markBar().data(_mental_health_.default).encode(vl.column().fieldN('type').spacing(10).title(null), vl.y().fieldQ('percentage'), vl.x().fieldN('race').sort(vl.fieldQ('percentage')).axis({
     title: null
-  }), vl.color().fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(100).height(400).render().then(function (viewElement) {
+  }), vl.color().fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(150).height(400).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('md2019').appendChild(viewElement);
   });
 }
 },{"../static/mental_health_2019.csv":"UAIM"}]},{},["fJoB"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.6713fc47.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.1e7b1aac.js.map

@@ -3,6 +3,7 @@ import all_race from '../static/all_race.csv';   // import dataset
 import merge from '../static/merge.csv';
 //import newcases from '../static/newcases_period.csv';
 import all_gender from '../static/all_gender.csv';
+import merge_race from '../static/merge_race.csv';
 
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
@@ -17,6 +18,7 @@ var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 
                 'Aug 19 - Aug 31', 'Sep 2 - Sep 14', 'Sep 16 - Sep 28', 'Sep 30 - Oct 12',
                 'Oct 14 - Oct 26', 'Oct 28 - Nov 9', 'Nov 11 - Nov 23', 'Nov 25 - Dec 7', 
                 'Dec 9 - Dec 21', 'Jan 6 - Jan 18', 'Jan 20 - Feb 1'];
+var symptomtypes = ['Anxiety', 'Depressive', 'Anxiety or Depressive']
 
 const options = {
   config: {
@@ -97,11 +99,11 @@ function drawIndicatorsGenderVegaLite() {
   const selection2 = vl.selectSingle('Select')
   .fields('Indicator')
   .init({Indicator: 'Symptoms of Anxiety Disorder'})
-  .bind({Indicator: vl.menu(indicators)});
+  .bind({Indicator: vl.menu(indicators).name('Symptom Type: ')});
 
   return vl.markCircle()
     .data(all_gender)
-    .title('Symptoms of Depression and Anxiety by Gender, April 2020 - February 2021')
+    .title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Gender, April 2020 - February 2021'])
     .select(selection2)
     .encode(
       vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
@@ -121,7 +123,7 @@ function drawIndicatorsGenderVegaLite() {
 }
 
 function drawIndicatorsRaceVegaLite() {
-  const selection = vl.selectSingle('Select')
+  /*const selection = vl.selectSingle('Select')
     .fields('Indicator', 'Subgroup')
     .init({Indicator: 'Symptoms of Anxiety Disorder', Subgroup: 'Non-Hispanic black, single race'})
     .bind({Indicator: vl.menu(indicators), Subgroup: vl.menu(races)});
@@ -139,7 +141,26 @@ function drawIndicatorsRaceVegaLite() {
     )
     .width(450)
     .height(450)
-    .render()
+    .render() */
+    const selection = vl.selectSingle('Select')
+    .fields('SymptomType')
+    .init({SymptomType: 'Anxiety'})
+    .bind({SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')});
+           
+    vl.markCircle()
+    .data(merge_race)
+    .title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Race, April 2020 - February 2021'])
+    .select(selection)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
+      vl.tooltip().fieldQ('Value'),
+      vl.color({title: 'Race/Ethnicity'}).fieldN('Subgroup2'),
+      vl.opacity().if(selection, vl.value(1)).value(0),
+    )
+    .width(450)
+    .height(450)
+    .render() 
     .then(viewElement => {
     document.getElementById('ind-race').appendChild(viewElement);
   });

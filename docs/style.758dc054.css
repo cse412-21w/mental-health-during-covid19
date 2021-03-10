@@ -42,20 +42,6 @@ body, html {
     font-weight: 400;
 }
 
-#secondPage {
-    color: white;
-    background:
-    /* top, transparent black, faked with gradient */ 
-    linear-gradient(
-      rgba(0, 0, 0, 0.7), 
-      rgba(0, 0, 0, 0.7)
-    ),
-    
-    url("https://cse412-21w.github.io/mental-health-during-covid19/covid.67d8424e.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
 .divider {
     margin-top:3em;
     height: .8em;
@@ -69,4 +55,4 @@ body, html {
 }
 
 
-/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.01647daf.css.map */
+/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.758dc054.css.map */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cse412-21w.github.io/mental-health-during-covid19/style.01647daf.css">
+    <link rel="stylesheet" href="https://cse412-21w.github.io/mental-health-during-covid19/style.758dc054.css">
     <!-- fullpage.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.css" integrity="sha512-RVmrWua3k1yTDEOg4Yzs2bK5+Thh7nM6jrhDq/6/5/Mwa0JbYe4pP4YMK5sqghKz01T3DgrwYc57Jaf1PSurCg==" crossorigin="anonymous">
      <!-- Bootstrap -->
@@ -32,68 +32,47 @@
 <body>
 
   <div id="fullpage">
-    <div id="fp-nav" class="scrollbar">
-      <ul>
-        <li>
-          <a href="#firstPage">
-            <span></span>
-            <div class="fp-tooltip right">Introduction</div>
-          </a>
-        </li>
-        <li>
-          <a href="#covid">
-            <span></span>
-          </a>
-        </li>
-        <li>
-          <a href="#anxietygender">
-            <span></span>
-          </a>
-        </li>
-        <li>
-          <a href="#mhrace">
-            <span></span>
-          </a>
-          
-        </li>
-        <li>
-          <a href="#casesmh">
-            <span></span>
-          </a>
-        </li>
-        <li>
-          <a href="#footer">
-            <span></span>
-          </a>
-        </li>
-      </ul>
-    </div>
 
     <section id="firstPage" class="viz-container section fp-section">
       <h1 id="title">Mental Health and Covid-19</h1>
       <br>
-      <h3 id="subtitle">Explore the effect of Covid-19 on Mental health status in America</h3>
+      <h3 id="subtitle">An exploration of mental health concerns in the US in the context of COVID-19</h3>
       <h3 id="authors">Jamie Forschmiedt, Travis Xie, Yichi Zhang</h3>
       <div class="divider"></div>
     </section>
 
     <section id="secondPage" class="viz-container section fp-section"> 
-      <h5>Aggregate comparison</h5>    
-      <div id="aggegrate-comparasion"></div>
-    </section>
-
-    <section id="secondPage" class="viz-container section fp-section"> 
-      <h5>Covid-19 Data By State:</h5>    
+      <h5>Cumulative COVID-19 Case Counts and Deaths By State:</h5>    
       <div id="covid-data"></div>
     </section>
 
+    <section id="sixthPage" class="viz-container section fp-section">
+      <h5>Percentage of adults aged 18 and over who experienced symptoms of anxiety in 2019</h5> 
+      <p>It is interesting to  notice that non Hispanic white people are more likely to
+        experience anxiety symptoms than other races.</p>
+      <div id="md2019"></div>
+    </section>
+
+    <section id="secondPage" class="viz-container section fp-section"> 
+      <div id="chartwrapper">
+        <h5>Aggregate Comparison of Mental Health Concerns, 2019 and 2020</h5>    
+
+        <div id="text-wrapper">
+          <p>From 2019 to 2020, there is significant increase in the amount of youth involved with mental health concerns </p>
+          
+          <p>There is a drastic 65% growth in the youth with at least one severe MDE in 2020 </p>
+        </div>
+        <div id="aggegrate-comparasion"></div>
+      </div>
+    </section>
+
     <section id="thirdPage" class="viz-container section fp-section">
-      <h5>Anxiety & Depression Symptoms by gender:</h5>    
+      <h5>A Closer Look At Anxiety & Depression Symptoms in 2020: Gender</h5>    
       <div id="ind-gender"></div>
     </section>
   
     <section id="fourthPage" class="viz-container section fp-section">
-      <h5>Anxiety & Depression Symptoms by race:</h5>
+      <h5>A Closer Look At Anxiety & Depression Symptoms in 2020: Race</h5>
       <div id="ind-race"></div>
     </section>
   
@@ -102,10 +81,7 @@
       <div id="cases-mh"></div>
     </section>
 
-    <section id="sixthPage" class="viz-container section fp-section">
-      <h5>Mental health in 2019</h5> 
-      <div id="md2019"></div>
-    </section>
+    
 
     <section id="seventhPage" class="viz-container section fp-section">
       <div>
@@ -118,10 +94,10 @@
    </section>
   </div> 
   
-  <script src="https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.daed0d4d.js"></script>   
+  <script src="https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.3c111a33.js"></script>   
   <script src="https://cse412-21w.github.io/mental-health-during-covid19/covid.22ccf8ba.js"></script> 
-  <script src="https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.6713fc47.js"></script> 
-  <script src="https://cse412-21w.github.io/mental-health-during-covid19/youth_adult_2019-2020_comparasion.a1cb29fb.js"></script>
+  <script src="https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.1e7b1aac.js"></script> 
+  <script src="https://cse412-21w.github.io/mental-health-during-covid19/youth_adult_2019-2020_comparasion.669604ce.js"></script> 
 
   <!-- enabling fullpage.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.js" integrity="sha512-HqbDsHIJoZ36Csd7NMupWFxC7e7aX2qm213sX+hirN+yEx/eUNlZrTWPs1dUQDEW4fMVkerv1PfMohR1WdFFJQ==" crossorigin="anonymous"></script>
@@ -129,7 +105,7 @@
   //options here
   autoScrolling: true,
   navigation: true,
-  navigationTooltips: ['Introduction', "viz1", "viz1", "viz1", "viz1", "viz1", "viz1", "Source and About Us"],
+  navigationTooltips: ['Introduction', "vis1", "vis2", "vis3", "vis4", "vis5", "vis6", "Source and About Us"],
   showActiveTooltip: true
 });</script>
 </body>

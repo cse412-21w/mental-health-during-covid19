@@ -125,6 +125,8 @@ module.exports = "/all_race.a8f6ac21.csv";
 module.exports = "/merge.0213c944.csv";
 },{}],"../static/all_gender.csv":[function(require,module,exports) {
 module.exports = "/all_gender.05223c4d.csv";
+},{}],"../static/merge_race.csv":[function(require,module,exports) {
+module.exports = "/merge_race.17461f0e.csv";
 },{}],"indicators-race.js":[function(require,module,exports) {
 "use strict";
 
@@ -135,6 +137,8 @@ var _all_race = _interopRequireDefault(require("../static/all_race.csv"));
 var _merge = _interopRequireDefault(require("../static/merge.csv"));
 
 var _all_gender = _interopRequireDefault(require("../static/all_gender.csv"));
+
+var _merge_race = _interopRequireDefault(require("../static/merge_race.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -148,6 +152,7 @@ var races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispa
 
 var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 'Symptoms of Anxiety Disorder or Depressive Disorder'];
 var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 21 - May 26', 'May 28 - June 2', 'June 4 - June 9', 'June 11 - June 16', 'June 18 - June 23', 'June 25 - June 30', 'July 2 - July 7', 'July 9 - July 14', 'July 16 - July 21', 'Aug 19 - Aug 31', 'Sep 2 - Sep 14', 'Sep 16 - Sep 28', 'Sep 30 - Oct 12', 'Oct 14 - Oct 26', 'Oct 28 - Nov 9', 'Nov 11 - Nov 23', 'Nov 25 - Dec 7', 'Dec 9 - Dec 21', 'Jan 6 - Jan 18', 'Jan 20 - Feb 1'];
+var symptomtypes = ['Anxiety', 'Depressive', 'Anxiety or Depressive'];
 var options = {
   config: {// Vega-Lite default configuration
   },
@@ -207,9 +212,9 @@ function drawIndicatorsGenderVegaLite() {
   var selection2 = vl.selectSingle('Select').fields('Indicator').init({
     Indicator: 'Symptoms of Anxiety Disorder'
   }).bind({
-    Indicator: vl.menu(indicators)
+    Indicator: vl.menu(indicators).name('Symptom Type: ')
   });
-  return vl.markCircle().data(_all_gender.default).title('Symptoms of Depression and Anxiety by Gender, April 2020 - February 2021').select(selection2).encode(vl.x({
+  return vl.markCircle().data(_all_gender.default).title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Gender, April 2020 - February 2021']).select(selection2).encode(vl.x({
     title: 'Time Period'
   }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
     title: '% of the US Adult Population'
@@ -223,20 +228,37 @@ function drawIndicatorsGenderVegaLite() {
 }
 
 function drawIndicatorsRaceVegaLite() {
-  var selection = vl.selectSingle('Select').fields('Indicator', 'Subgroup').init({
-    Indicator: 'Symptoms of Anxiety Disorder',
-    Subgroup: 'Non-Hispanic black, single race'
+  /*const selection = vl.selectSingle('Select')
+    .fields('Indicator', 'Subgroup')
+    .init({Indicator: 'Symptoms of Anxiety Disorder', Subgroup: 'Non-Hispanic black, single race'})
+    .bind({Indicator: vl.menu(indicators), Subgroup: vl.menu(races)});
+           
+     vl.markCircle()
+    .data(all_race)
+    .title('Symptoms of Anxiety and Depressive Disorder, April 2020 - February 2021')
+    .select(selection)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: 'Percentage of population'}).fieldQ('Value'),
+      vl.tooltip().fieldQ('Value'),
+      vl.color({title: 'Race/Ethnicity'}).fieldN('Subgroup'),
+      vl.opacity().if(selection, vl.value(1)).value(0)
+    )
+    .width(450)
+    .height(450)
+    .render() */
+  var selection = vl.selectSingle('Select').fields('SymptomType').init({
+    SymptomType: 'Anxiety'
   }).bind({
-    Indicator: vl.menu(indicators),
-    Subgroup: vl.menu(races)
+    SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')
   });
-  vl.markCircle().data(_all_race.default).title('Symptoms of Anxiety and Depressive Disorder, April 2020 - February 2021').select(selection).encode(vl.x({
+  vl.markCircle().data(_merge_race.default).title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Race, April 2020 - February 2021']).select(selection).encode(vl.x({
     title: 'Time Period'
   }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
-    title: 'Percentage of population'
+    title: '% of the US Adult Population'
   }).fieldQ('Value'), vl.tooltip().fieldQ('Value'), vl.color({
     title: 'Race/Ethnicity'
-  }).fieldN('Subgroup'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+  }).fieldN('Subgroup2'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
     document.getElementById('ind-race').appendChild(viewElement);
   });
 } // COVID cases and Anxiety/Depression 
@@ -296,7 +318,7 @@ function drawCasesSymptomsVegaLite() {
     });
 }
 */
-},{"../static/anxiety_gender.csv":"../static/anxiety_gender.csv","../static/all_race.csv":"../static/all_race.csv","../static/merge.csv":"../static/merge.csv","../static/all_gender.csv":"../static/all_gender.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../static/anxiety_gender.csv":"../static/anxiety_gender.csv","../static/all_race.csv":"../static/all_race.csv","../static/merge.csv":"../static/merge.csv","../static/all_gender.csv":"../static/all_gender.csv","../static/merge_race.csv":"../static/merge_race.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -324,7 +346,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57113" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51978" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
