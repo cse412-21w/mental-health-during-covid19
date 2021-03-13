@@ -117,53 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../static/adult_mh_prevalance_aggregate.csv":[function(require,module,exports) {
-module.exports = "/adult_mh_prevalance_aggregate.f29f88fa.csv";
-},{}],"../static/youth_prevalance_of_mde_aggregate.csv":[function(require,module,exports) {
-module.exports = "/youth_prevalance_of_mde_aggregate.daf8865d.csv";
-},{}],"youth_adult_2019-2020_comparasion/index.js":[function(require,module,exports) {
-"use strict"; // the code should be executed in "strict mode".
-// With strict mode, you can not, for example, use undeclared variables
+})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-var _adult_mh_prevalance_aggregate = _interopRequireDefault(require("../../static/adult_mh_prevalance_aggregate.csv"));
-
-var _youth_prevalance_of_mde_aggregate = _interopRequireDefault(require("../../static/youth_prevalance_of_mde_aggregate.csv"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var options = {
-  config: {// Vega-Lite default configuration
-  },
-  init: function init(view) {
-    // initialize tooltip handler
-    view.tooltip(new vegaTooltip.Handler().call);
-  },
-  view: {
-    // view constructor options
-    // remove the loader if you don't want to default to vega-datasets!
-    //   loader: vega.loader({
-    //     baseURL: "",
-    //   }),
-    renderer: "canvas"
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
-};
-vl.register(vega, vegaLite, options);
-drawYouthAdultComparasionVegaLite();
 
-function drawYouthAdultComparasionVegaLite() {
-  var adultChart = vl.markBar().title({
-    "text": "Number of Adults With Any Mental Illness, 2019 and 2020"
-  }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x().fieldN('year').axis({
-    "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
-  var youthChart = vl.markBar().title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
-    "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
-  vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
-    document.getElementById('aggegrate-comparasion').appendChild(viewElement);
-  });
+  return bundleURL;
 }
-},{"../../static/adult_mh_prevalance_aggregate.csv":"../static/adult_mh_prevalance_aggregate.csv","../../static/youth_prevalance_of_mde_aggregate.csv":"../static/youth_prevalance_of_mde_aggregate.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -367,5 +388,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","youth_adult_2019-2020_comparasion/index.js"], null)
-//# sourceMappingURL=/youth_adult_2019-2020_comparasion.06417182.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/index.js.map

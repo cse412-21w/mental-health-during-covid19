@@ -173,38 +173,6 @@ vl.register(vega, vegaLite, options);
 drawIndicatorsGenderVegaLite();
 drawIndicatorsRaceVegaLite();
 drawCasesSymptomsVegaLite();
-/*anxiety_race = cdchealth
-.filter(d => op.includes(d.Group, 'By Race/Hispanic Ethnicity'))
-.filter(d => op.equal(d.Indicator, 'Symptoms of Anxiety Disorder'))
-.filter(d => !op.includes(d.TimePeriodLabel, 'July 22 - Aug 18'))
-.filter(d => !op.includes(d.TimePeriodLabel, 'Dec 22 - Jan 5')) */
-
-function drawAnxietyGenderVegaLite() {
-  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here 
-  vl.markLine().data(_anxiety_gender.default).encode(vl.x().fieldO('TimePeriodLabel').sort(time_periods), vl.y().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.tooltip('Value')).width(450).height(450).render().then(function (viewElement) {
-    // render returns a promise to a DOM element containing the chart
-    // viewElement.value contains the Vega View object instance
-    document.getElementById('anxiety').appendChild(viewElement);
-  });
-  /*vl.markBar()
-  .data(anxiety_gender)
-  .encode(
-    vl.column().fieldN('TimePeriodLabel').sort(time_periods).spacing(10),
-    vl.y().fieldQ('Value'),
-    vl.x().fieldN('Subgroup'),
-    vl.color().fieldN('Subgroup'),
-    vl.tooltip('Value')
-  )
-  .width(50)
-  .height(450)
-  .render()
-  .then(viewElement => {
-    // render returns a promise to a DOM element containing the chart
-    // viewElement.value contains the Vega View object instance
-    document.getElementById('anxiety').appendChild(viewElement);
-  }); */
-}
 
 function drawIndicatorsGenderVegaLite() {
   // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
@@ -346,7 +314,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51978" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52599" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

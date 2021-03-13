@@ -173,38 +173,6 @@ vl.register(vega, vegaLite, options);
 drawIndicatorsGenderVegaLite();
 drawIndicatorsRaceVegaLite();
 drawCasesSymptomsVegaLite();
-/*anxiety_race = cdchealth
-.filter(d => op.includes(d.Group, 'By Race/Hispanic Ethnicity'))
-.filter(d => op.equal(d.Indicator, 'Symptoms of Anxiety Disorder'))
-.filter(d => !op.includes(d.TimePeriodLabel, 'July 22 - Aug 18'))
-.filter(d => !op.includes(d.TimePeriodLabel, 'Dec 22 - Jan 5')) */
-
-function drawAnxietyGenderVegaLite() {
-  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here 
-  vl.markLine().data(_anxiety_gender.default).encode(vl.x().fieldO('TimePeriodLabel').sort(time_periods), vl.y().fieldQ('Value'), vl.color().fieldN('Subgroup'), vl.tooltip('Value')).width(450).height(450).render().then(function (viewElement) {
-    // render returns a promise to a DOM element containing the chart
-    // viewElement.value contains the Vega View object instance
-    document.getElementById('anxiety').appendChild(viewElement);
-  });
-  /*vl.markBar()
-  .data(anxiety_gender)
-  .encode(
-    vl.column().fieldN('TimePeriodLabel').sort(time_periods).spacing(10),
-    vl.y().fieldQ('Value'),
-    vl.x().fieldN('Subgroup'),
-    vl.color().fieldN('Subgroup'),
-    vl.tooltip('Value')
-  )
-  .width(50)
-  .height(450)
-  .render()
-  .then(viewElement => {
-    // render returns a promise to a DOM element containing the chart
-    // viewElement.value contains the Vega View object instance
-    document.getElementById('anxiety').appendChild(viewElement);
-  }); */
-}
 
 function drawIndicatorsGenderVegaLite() {
   // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
@@ -319,4 +287,4 @@ function drawCasesSymptomsVegaLite() {
 }
 */
 },{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/all_gender.csv":"R8y1","../static/merge_race.csv":"nMLH"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.3c111a33.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.33430bcf.js.map
