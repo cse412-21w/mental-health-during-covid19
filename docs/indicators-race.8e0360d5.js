@@ -127,6 +127,8 @@ module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merg
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/all_gender.d23d63f8.csv";
 },{}],"nMLH":[function(require,module,exports) {
 module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merge_race.5793a8b2.csv";
+},{}],"eL8k":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/merge_gender.f8d75957.csv";
 },{}],"lQjA":[function(require,module,exports) {
 "use strict";
 
@@ -139,6 +141,8 @@ var _merge = _interopRequireDefault(require("../static/merge.csv"));
 var _all_gender = _interopRequireDefault(require("../static/all_gender.csv"));
 
 var _merge_race = _interopRequireDefault(require("../static/merge_race.csv"));
+
+var _merge_gender = _interopRequireDefault(require("../static/merge_gender.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -175,20 +179,36 @@ drawIndicatorsRaceVegaLite();
 drawCasesSymptomsVegaLite();
 
 function drawIndicatorsGenderVegaLite() {
-  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here 
-  var selection2 = vl.selectSingle('Select').fields('Indicator').init({
-    Indicator: 'Symptoms of Anxiety Disorder'
+  /*const selection2 = vl.selectSingle('Select')
+  .fields('Indicator')
+  .init({Indicator: 'Symptoms of Anxiety Disorder'})
+  .bind({Indicator: vl.menu(indicators).name('Symptom Type: ')});
+    return vl.markCircle()
+    .data(all_gender)
+    .title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Gender, April 2020 - February 2021'])
+    .select(selection2)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
+      vl.color({title: 'Gender'}).fieldN('Subgroup'),
+      vl.tooltip('Value'),
+      vl.opacity().if(selection2, vl.value(1)).value(0)
+  ) */
+  var selection2 = vl.selectSingle('Select').fields('SymptomType').init({
+    SymptomType: 'Anxiety'
   }).bind({
-    Indicator: vl.menu(indicators).name('Symptom Type: ')
+    SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')
   });
-  return vl.markCircle().data(_all_gender.default).title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Gender, April 2020 - February 2021']).select(selection2).encode(vl.x({
+  return vl.markCircle().data(_merge_gender.default).title('Symptoms of Depression and Anxiety by Sex, April 2020 - February 2021').select(selection2).encode(vl.x({
     title: 'Time Period'
-  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
+  }).fieldO('TimePeriodLabel').sort(time_periods).axis({
+    grid: true,
+    tickBand: 'extent'
+  }), vl.y({
     title: '% of the US Adult Population'
   }).fieldQ('Value'), vl.color({
-    title: 'Gender'
-  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+    title: 'Sex'
+  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(400).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('ind-gender').appendChild(viewElement);
@@ -222,11 +242,14 @@ function drawIndicatorsRaceVegaLite() {
   });
   vl.markCircle().data(_merge_race.default).title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Race, April 2020 - February 2021']).select(selection).encode(vl.x({
     title: 'Time Period'
-  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
+  }).fieldO('TimePeriodLabel').sort(time_periods).axis({
+    grid: true,
+    tickBand: 'extent'
+  }), vl.y({
     title: '% of the US Adult Population'
   }).fieldQ('Value'), vl.tooltip().fieldQ('Value'), vl.color({
     title: 'Race/Ethnicity'
-  }).fieldN('Subgroup2'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(450).render().then(function (viewElement) {
+  }).fieldN('Subgroup2'), vl.opacity().if(selection, vl.value(1)).value(0)).width(450).height(400).render().then(function (viewElement) {
     document.getElementById('ind-race').appendChild(viewElement);
   });
 } // COVID cases and Anxiety/Depression 
@@ -286,5 +309,5 @@ function drawCasesSymptomsVegaLite() {
     });
 }
 */
-},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/all_gender.csv":"R8y1","../static/merge_race.csv":"nMLH"}]},{},["lQjA"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.33430bcf.js.map
+},{"../static/anxiety_gender.csv":"XW3e","../static/all_race.csv":"lEnl","../static/merge.csv":"L1Tp","../static/all_gender.csv":"R8y1","../static/merge_race.csv":"nMLH","../static/merge_gender.csv":"eL8k"}]},{},["lQjA"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.8e0360d5.js.map

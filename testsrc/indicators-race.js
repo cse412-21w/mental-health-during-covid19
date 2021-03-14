@@ -4,6 +4,7 @@ import merge from '../static/merge.csv';
 //import newcases from '../static/newcases_period.csv';
 import all_gender from '../static/all_gender.csv';
 import merge_race from '../static/merge_race.csv';
+import merge_gender from '../static/merge_gender.csv';
 
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
@@ -45,9 +46,7 @@ drawIndicatorsRaceVegaLite();
 drawCasesSymptomsVegaLite();
 
 function drawIndicatorsGenderVegaLite() {
-  // var sunshine = add_data(vl, sunshine.csv, format_type = NULL);
-  // your visualization goes here 
-  const selection2 = vl.selectSingle('Select')
+  /*const selection2 = vl.selectSingle('Select')
   .fields('Indicator')
   .init({Indicator: 'Symptoms of Anxiety Disorder'})
   .bind({Indicator: vl.menu(indicators).name('Symptom Type: ')});
@@ -62,9 +61,25 @@ function drawIndicatorsGenderVegaLite() {
       vl.color({title: 'Gender'}).fieldN('Subgroup'),
       vl.tooltip('Value'),
       vl.opacity().if(selection2, vl.value(1)).value(0)
+  ) */
+  const selection2 = vl.selectSingle('Select')
+    .fields('SymptomType')
+    .init({SymptomType: 'Anxiety'})
+    .bind({SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')});
+  
+  return vl.markCircle()
+    .data(merge_gender)
+    .title('Symptoms of Depression and Anxiety by Sex, April 2020 - February 2021')
+    .select(selection2)
+    .encode(
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods).axis({grid: true, tickBand: 'extent'}),
+      vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
+      vl.color({title: 'Sex'}).fieldN('Subgroup'),
+      vl.tooltip('Value'),
+      vl.opacity().if(selection2, vl.value(1)).value(0)
   )
   .width(450)
-  .height(450)
+  .height(400)
   .render()
   .then(viewElement => {
     // render returns a promise to a DOM element containing the chart
@@ -103,14 +118,14 @@ function drawIndicatorsRaceVegaLite() {
     .title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Race, April 2020 - February 2021'])
     .select(selection)
     .encode(
-      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods).axis({grid: true, tickBand: 'extent'}),
       vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
       vl.tooltip().fieldQ('Value'),
       vl.color({title: 'Race/Ethnicity'}).fieldN('Subgroup2'),
       vl.opacity().if(selection, vl.value(1)).value(0),
     )
     .width(450)
-    .height(450)
+    .height(400)
     .render() 
     .then(viewElement => {
     document.getElementById('ind-race').appendChild(viewElement);
