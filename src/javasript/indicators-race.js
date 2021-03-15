@@ -140,7 +140,7 @@ function drawCasesSymptomsVegaLite() {
   const brush = vl.selectInterval()
   .encodings('x');
 
-  const cases = vl.markArea({color: 'teal'})
+  const cases = vl.markArea({color: '#F6573F'})
     .data(merge)
     .select(brush)
     .encode(

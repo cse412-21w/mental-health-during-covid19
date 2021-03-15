@@ -13,26 +13,11 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <!-- For using vega-lite -->
-<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1/build/vega.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0/build/vega-lite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@4.0.0/build/vega-lite-api.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
-=======
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1/build/vega.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0/build/vega-lite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@4.0.0/build/vega-lite-api.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>  
-
->>>>>>> a03a8e1d1d0a0f841a61481cbd94084ab4b99b4c
     <!-- For using Arquero -->
     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/apache-arrow@3"></script>
@@ -41,8 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet"> 
-    <!-- Link vega lite js --> 
-    <!-- <script type="module" src="./vega-lite/depressive-indicator.js" defer></script> -->
+    <script src="https://use.fontawesome.com/ed77f5ca35.js"></script>
     <title>Mental Health during COVID-19</title>
 </head>
 <body>
@@ -55,6 +39,10 @@
       <h3 id="subtitle">An exploration of mental health concerns in the US in the context of COVID-19</h3>
       <h3 id="authors">Jamie Forschmiedt, Travis Xie, Yichi Zhang</h3>
       <div class="divider"></div>
+      <div id='scroll-down-container'>
+        <span id="scroll-down-text">Scroll Down</span>
+        <i class="icon mouse fas fa-mouse"></i>
+      </div>
     </section>
 
     <section id='secondPage' class='viz-container section fp-section'>
@@ -132,12 +120,22 @@
       <div id='cases-mh'></div>
     </section>
 
+    <section id='demoPage' class="viz-container section fp-section">
+      <h5>Demo video</h5> 
+      <br/>
+      <div id="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/uWhD6b_3cAc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="divider"></div>
+    </section>
+
     <section id="seventhPage" class="viz-container section fp-section">
       <div>
         <h5>Data Sources:</h5>
         <p>
           <a href='https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp'>CDC Household Pulse Survey 2020</a> <br/>
           <a href='https://www.mhanational.org/sites/default/files/2019-09/2019%20MH%20in%20America%20Final.pdf'>Mental Health America 2019 Report</a> <br/>
+          <a href='https://www.mhanational.org/issues/2020/mental-health-america-all-data'>Mental Health America 2020 Report</a> <br/>
           <a href='https://github.com/nytimes/covid-19-data'>New York Times Covid-19 Data</a>
         </p>
         <br/>
@@ -177,7 +175,7 @@
       //options here
       autoScrolling: true,
       navigation: true,
-      navigationTooltips: ['Introduction', 'Background', "Covid Case Count by State", "Adult Mental Health", "Aggregate Comparison", "Adult Anxiety", "Narrative", "Closer Look: Sex", "Closer Look: Race", "Covid and Anxiety/Depression", "Source and About Us"],
+      navigationTooltips: ['Introduction', 'Background', "Covid Case Count by State", "Adult Mental Health", "Aggregate Comparison", "Adult Anxiety", "Narrative", "Closer Look: Sex", "Closer Look: Race", "Covid and Anxiety/Depression", "Demo Video", "Source and About Us"],
       showActiveTooltip: true
     });
   </script>
