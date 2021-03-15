@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"UAIM":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.18fe8772.csv";
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.95c86e3e.csv";
 },{}],"ojpZ":[function(require,module,exports) {
 "use strict";
 
@@ -172,4 +172,4 @@ function drawLineVegaLite() {
   });
 }
 },{"../../static/mental_health_2019.csv":"UAIM"}]},{},["ojpZ"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.7604ccfc.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.bdf81312.js.map

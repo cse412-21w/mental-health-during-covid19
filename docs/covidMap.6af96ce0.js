@@ -117,12 +117,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"op3u":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/us-states.136c86ae.csv";
-},{}],"ZQ0s":[function(require,module,exports) {
+})({"TSRe":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/adult_prevalance_2019.af3da5af.csv";
+},{}],"XELn":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/adult_mh_prevalance_2020 (2).0d10b33e.csv";
+},{}],"n4HL":[function(require,module,exports) {
 "use strict";
 
-var _usStates = _interopRequireDefault(require("../../static/us-states.csv"));
+var _adult_prevalance_ = _interopRequireDefault(require("../../static/adult_prevalance_2019.csv"));
+
+var _adult_mh_prevalance_ = _interopRequireDefault(require("../../static/adult_mh_prevalance_2020 (2).csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -148,41 +152,38 @@ var options = {
   }
 };
 vl.register(vega, vegaLite, options);
-var dataArray = [];
-var stateArray = [];
-d3.csv(_usStates.default).then(function (data) {
-  data.forEach(function (d) {
-    var parseDate = d3.utcParse("%Y-%m-%d");
-    var date = parseDate(d.date);
-    var state = d.state;
-    var cases = +d.cases;
-    var deaths = +d.deaths;
-    dataArray.push({
-      date: date,
-      state: state,
-      cases: cases,
-      deaths: deaths
-    });
-
-    if (!stateArray.includes(state)) {
-      stateArray.push(state);
-    }
-  });
-  drawLineVegaLite();
-});
-stateArray = stateArray.sort();
+drawLineVegaLite();
 
 function drawLineVegaLite() {
-  var selection = vl.selectSingle('Select').fields('state').init({
-    'state': stateArray[0]
-  }).bind(vl.menu(stateArray));
-  var cases = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('cases'), vl.tooltip(['date', 'cases'])).width(400).height(450);
-  var death = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('deaths'), vl.tooltip(['date', 'deaths'])).width(400).height(450);
-  return vl.hconcat(cases, death).spacing(5).render().then(function (viewElement) {
+  var Covid2019 = vl.layer(vl.markGeoshape({
+    stroke: '#aaa',
+    strokeWidth: 0.25
+  }).title("Percentage of Adult with any Mental illness by State in 2019").data(vl.topojson('data/us-10m.json').feature('states')).transform(vl.lookup('id').from(vl.data(_adult_prevalance_.default).key('id').fields(['state', 'rank', 'percentage', 'number']))).encode(vl.color().fieldQ('percentage').scale({
+    scheme: 'Reds'
+  }).legend({
+    title: 'Percentage (%)'
+  }))).width(400).height(300).config({
+    view: {
+      stroke: null
+    }
+  }).project(vl.projection('albersUsa'));
+  var Covid2020 = vl.layer(vl.markGeoshape({
+    stroke: '#aaa',
+    strokeWidth: 0.25
+  }).title("Percentage of Adult with any Mental illness by State in 2020").data(vl.topojson('data/us-10m.json').feature('states')).transform(vl.lookup('id').from(vl.data(_adult_mh_prevalance_.default).key('id ').fields(['state', 'rank', 'percentage', 'number']))).encode(vl.color().fieldQ('percentage').scale({
+    scheme: 'Reds'
+  }).legend({
+    title: 'Percentage (%)'
+  }))).width(400).height(300).config({
+    view: {
+      stroke: null
+    }
+  }).project(vl.projection('albersUsa'));
+  return vl.hconcat(Covid2019, Covid2020).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
-    document.getElementById('covid-data').appendChild(viewElement);
+    document.getElementById('covid-Map-data').appendChild(viewElement);
   });
 }
-},{"../../static/us-states.csv":"op3u"}]},{},["ZQ0s"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/covid.c4371d67.js.map
+},{"../../static/adult_prevalance_2019.csv":"TSRe","../../static/adult_mh_prevalance_2020 (2).csv":"XELn"}]},{},["n4HL"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/covidMap.6af96ce0.js.map

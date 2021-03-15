@@ -117,19 +117,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"kWp5":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/adult_mh_prevalance_aggregate.46b87ee5.csv";
-},{}],"TLC3":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/youth_prevalance_of_mde_aggregate.967315c3.csv";
-},{}],"RtPL":[function(require,module,exports) {
+})({"op3u":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/us-states.e810cdf0.csv";
+},{}],"ZQ0s":[function(require,module,exports) {
+"use strict";
+
+var _usStates = _interopRequireDefault(require("../../static/us-states.csv"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import dataset
 "use strict"; // the code should be executed in "strict mode".
 // With strict mode, you can not, for example, use undeclared variables
 
-var _adult_mh_prevalance_aggregate = _interopRequireDefault(require("../../static/adult_mh_prevalance_aggregate.csv"));
-
-var _youth_prevalance_of_mde_aggregate = _interopRequireDefault(require("../../static/youth_prevalance_of_mde_aggregate.csv"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var options = {
   config: {// Vega-Lite default configuration
@@ -148,20 +148,41 @@ var options = {
   }
 };
 vl.register(vega, vegaLite, options);
-drawYouthAdultComparasionVegaLite();
+var dataArray = [];
+var stateArray = [];
+d3.csv(_usStates.default).then(function (data) {
+  data.forEach(function (d) {
+    var parseDate = d3.utcParse("%Y-%m-%d");
+    var date = parseDate(d.date);
+    var state = d.state;
+    var cases = +d.cases;
+    var deaths = +d.deaths;
+    dataArray.push({
+      date: date,
+      state: state,
+      cases: cases,
+      deaths: deaths
+    });
 
-function drawYouthAdultComparasionVegaLite() {
-  var adultChart = vl.markBar().title({
-    "text": "Number of Adults With Any Mental Illness, 2019 and 2020"
-  }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x().fieldN('year').axis({
-    "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
-  var youthChart = vl.markBar().title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
-    "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
-  vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
-    document.getElementById('aggegrate-comparasion').appendChild(viewElement);
+    if (!stateArray.includes(state)) {
+      stateArray.push(state);
+    }
+  });
+  drawLineVegaLite();
+});
+stateArray = stateArray.sort();
+
+function drawLineVegaLite() {
+  var selection = vl.selectSingle('Select').fields('state').init({
+    'state': stateArray[0]
+  }).bind(vl.menu(stateArray));
+  var cases = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('cases'), vl.tooltip(['date', 'cases'])).width(400).height(450);
+  var death = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('deaths'), vl.tooltip(['date', 'deaths'])).width(400).height(450);
+  return vl.hconcat(cases, death).spacing(5).render().then(function (viewElement) {
+    // render returns a promise to a DOM element containing the chart
+    // viewElement.value contains the Vega View object instance
+    document.getElementById('covid-data').appendChild(viewElement);
   });
 }
-},{"../../static/adult_mh_prevalance_aggregate.csv":"kWp5","../../static/youth_prevalance_of_mde_aggregate.csv":"TLC3"}]},{},["RtPL"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/javasript.9a15dba9.js.map
+},{"../../static/us-states.csv":"op3u"}]},{},["ZQ0s"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/covid.fe90c733.js.map
