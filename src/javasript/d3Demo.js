@@ -1,4 +1,4 @@
-import sunshineData from '../static/sunshine.csv'    // import dataset
+import sunshineData from '../../static/sunshine.csv'    // import dataset
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
 
