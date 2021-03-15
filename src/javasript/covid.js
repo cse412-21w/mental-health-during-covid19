@@ -50,7 +50,7 @@ function drawLineVegaLite() {
     .init({'state': stateArray[0]})
     .bind(vl.menu(stateArray))
 
-  const cases = vl.markLine()
+  const cases = vl.markLine({color: '#F6573F'})
       .data(dataArray)
       .select(selection)
       .transform(
@@ -64,7 +64,7 @@ function drawLineVegaLite() {
       .width(400)
       .height(450);
 
-    const death = vl.markLine()
+    const death = vl.markLine({color: '#F6573F'})
         .data(dataArray)
         .select(selection)
         .transform(

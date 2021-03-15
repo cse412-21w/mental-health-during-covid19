@@ -55,12 +55,20 @@ body, html {
 }
 
 .desc-text {
-    float: right;
-    padding-right: 15em;
+    position: absolute;
+    left: 50em;
+    bottom: 20em;
+    width: 20em;
+
 }
 
 .strong-text {
     font-size: 4em;
     font-weight: 500;
     color: #F6573F;
+}
+
+#ninethPage{
+    position: relative;
+    max-width: 40em;
 }
