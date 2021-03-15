@@ -3,6 +3,11 @@ import merge from '../../static/merge.csv';
 import merge_race from '../../static/merge_race.csv';
 import merge_gender from '../../static/merge_gender.csv';
 
+/* var vl = require('vega-lite-api');
+var vegaLite = require('vega-lite');
+var vega = require('vega');
+var vegaTooltip = require('vega-tooltip'); */
+
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
 

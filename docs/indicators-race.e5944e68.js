@@ -135,6 +135,11 @@ var _merge_gender = _interopRequireDefault(require("../../static/merge_gender.cs
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //import newcases from '../static/newcases_period.csv';
+
+/* var vl = require('vega-lite-api');
+var vegaLite = require('vega-lite');
+var vega = require('vega');
+var vegaTooltip = require('vega-tooltip'); */
 "use strict"; // the code should be executed in "strict mode".
 // With strict mode, you can not, for example, use undeclared variables
 
@@ -297,4 +302,4 @@ function drawCasesSymptomsVegaLite() {
 }
 */
 },{"../../static/merge.csv":"L1Tp","../../static/merge_race.csv":"nMLH","../../static/merge_gender.csv":"eL8k"}]},{},["FSVR"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.0aca6781.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.e5944e68.js.map

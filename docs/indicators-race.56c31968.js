@@ -135,6 +135,11 @@ var _merge_gender = _interopRequireDefault(require("../../static/merge_gender.cs
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //import newcases from '../static/newcases_period.csv';
+
+/* var vl = require('vega-lite-api');
+var vegaLite = require('vega-lite');
+var vega = require('vega');
+var vegaTooltip = require('vega-tooltip'); */
 "use strict"; // the code should be executed in "strict mode".
 // With strict mode, you can not, for example, use undeclared variables
 
@@ -324,7 +329,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58465" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61713" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
