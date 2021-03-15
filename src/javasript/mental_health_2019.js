@@ -1,9 +1,6 @@
-import mhdata from '../static/mental_health_2019.csv'    // import dataset
+import mhdata from '../../static/mental_health_2019.csv'    // import dataset
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
-
-var races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispanic black, single race',
-'Non-Hispanic Asian, single race', 'Non-Hispanic, other races and multiple races']; 
 
 const options = {
   config: {

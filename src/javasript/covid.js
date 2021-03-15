@@ -1,4 +1,4 @@
-import casedata from '../static/us-states.csv'    // import dataset
+import casedata from '../../static/us-states.csv'    // import dataset
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
 
