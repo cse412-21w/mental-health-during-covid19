@@ -13,26 +13,12 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <!-- For using vega-lite -->
-<<<<<<< HEAD
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1/build/vega.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0/build/vega-lite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@4.0.0/build/vega-lite-api.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
-=======
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script> -->
-
     <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1/build/vega.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0/build/vega-lite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@4.0.0/build/vega-lite-api.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>  
 
->>>>>>> a03a8e1d1d0a0f841a61481cbd94084ab4b99b4c
     <!-- For using Arquero -->
     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/apache-arrow@3"></script>
@@ -69,11 +55,18 @@
     </section>
 
     <section id="thirdPage" class="viz-container section fp-section"> 
+      <p>First, let's take a quick look at the cumulative Covid-19 cases and deaths. <br/>
+         Select a US state or territory to view cases and deaths from early 2020 to early 2021.
+      </p>
       <h5>Cumulative COVID-19 Case Counts and Deaths By State:</h5>    
       <div id='covid-data'></div>
     </section>
 
-    <section id="fourthPage" class="viz-container section fp-section"> 
+    <section id='fourthpage' class='viz-container section fp-section'>
+      
+    </section>
+
+    <section id="fifthPage" class="viz-container section fp-section"> 
       <h5>Percentage of Adults with Any Mental Illness Between 2019 and 2020, by State</h5>    
       <div id='covid-Map-data'></div>
       <h6>On average, each state had a <span class="strong-text">1.2%</span> increase in the percentage of adults who had any mental illness.</h6>
@@ -93,14 +86,14 @@
       </div>
     </section>
 
-    <section id='fifthPage' class="viz-container section fp-section">
+    <section id='seventhPage' class="viz-container section fp-section">
       <h5>Percentage of adults aged 18 and over who experienced symptoms of anxiety in 2019</h5> 
       <p>Note that non-Hispanic white adults were most likely to
         report any anxiety symptoms in 2019, at <span class='strong-text'>16.5%.</span></p>
       <div id='md2019'></div>
     </section>
 
-    <section id='seventhPage' class='viz-container section fp-section'>
+    <section id='eighthPage' class='viz-container section fp-section'>
       <h5>The pandemic has not affected everyone equally. Disproportionately Black communities <br>
           have experienced higher rates of Covid-19 cases and deaths. According to the Pew <br>
           Research Center, unemployment rates during the spring of 2020 exceeded those of the <br>
@@ -112,12 +105,12 @@
       <div class="divider"></div>
     </section>
 
-    <section id="eighthPage" class="viz-container section fp-section">
+    <section id="ninthPage" class="viz-container section fp-section">
       <h5>A Closer Look At Anxiety & Depression Symptoms in 2020: Sex</h5>    
       <div id='ind-gender'></div>
     </section>
   
-    <section id="ninethPage" class="viz-container section fp-section">
+    <section id="tenthPage" class="viz-container section fp-section">
       <h5>A Closer Look At Anxiety & Depression Symptoms in 2020: Race</h5>
       <div id='ind-race'></div>
       <div class="desc-text">
@@ -127,12 +120,12 @@
       </div>
     </section>
   
-    <section id='tenthPage' class="viz-container section fp-section">
+    <section id='eleventhPage' class="viz-container section fp-section">
       <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5> 
       <div id='cases-mh'></div>
     </section>
 
-    <section id="seventhPage" class="viz-container section fp-section">
+    <section id="twelfthPage" class="viz-container section fp-section">
       <div>
         <h5>Data Sources:</h5>
         <p>

@@ -37,18 +37,20 @@ d3.csv(casedata).then(function(data) {
     if (!stateArray.includes(state)) {
       stateArray.push(state)
     }
+    stateArray = stateArray.sort();
   })
   drawLineVegaLite();
 });
 
-stateArray = stateArray.sort();
+//stateArray = stateArray.sort();
 
 function drawLineVegaLite() {
 
   const selection = vl.selectSingle('Select')
     .fields('state')
-    .init({'state': stateArray[0]})
-    .bind(vl.menu(stateArray))
+    //.init({'state': stateArray[0]})
+    .init({'state': 'Washington'})
+    .bind(vl.menu(stateArray).name('State: '))
 
   const cases = vl.markLine({color: '#F6573F'})
       .data(dataArray)
@@ -57,8 +59,8 @@ function drawLineVegaLite() {
         vl.filter(selection)
       )
       .encode(
-        vl.x().fieldT('date'),
-        vl.y().fieldQ('cases'),
+        vl.x({title: 'Date'}).fieldT('date'),
+        vl.y({title: 'Cases'}).fieldQ('cases'),
         vl.tooltip(['date', 'cases'])
       )
       .width(400)
@@ -71,8 +73,8 @@ function drawLineVegaLite() {
           vl.filter(selection)
         )
         .encode(
-          vl.x().fieldT('date'),
-          vl.y().fieldQ('deaths'),
+          vl.x({title: 'Date'}).fieldT('date'),
+          vl.y({title: 'Deaths'}).fieldQ('deaths'),
           vl.tooltip(['date', 'deaths'])
         )
         .width(400)

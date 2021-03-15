@@ -40,11 +40,11 @@ function drawLineVegaLite() {
     .data(mhdata)
     .encode(
         vl.column().fieldN('type').spacing(10).title(null),
-        vl.y().fieldQ('percentage'),
+        vl.y({title: 'Percentage'}).fieldQ('percentage'),
         vl.x().fieldN('race')
           .sort(vl.fieldQ('percentage'))
           .axis({title: null}),
-        vl.color().fieldN('race'),
+        vl.color({title: 'Race'}).fieldN('race'),
         vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])
     )
     .width(150)
