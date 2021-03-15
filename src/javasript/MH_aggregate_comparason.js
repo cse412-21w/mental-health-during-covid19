@@ -32,7 +32,8 @@ function drawYouthAdultComparasionVegaLite() {
     .data(adult_aggregate_data)
     .encode(
       vl.x().fieldN('year').axis({"labelAngle": 0}),
-      vl.y().fieldQ('count').title('Number Count')
+      vl.y().fieldQ('count').title('Number Count'),
+      vl.color().fieldN('year').scale({range: ["#F6573F", "#F6573F"]})
     )
     .width(200)
     .height(400)
@@ -42,7 +43,8 @@ function drawYouthAdultComparasionVegaLite() {
     .data(youth_aggregate_data)
     .encode(
         vl.x().fieldN('year').axis({"labelAngle": 0}),
-        vl.y().fieldQ('count').title('Number Count')
+        vl.y().fieldQ('count').title('Number Count'),
+        vl.color().fieldN('year').scale({range: ["#F6573F", "#F6573F"]})
     )
     .width(200)
     .height(400)

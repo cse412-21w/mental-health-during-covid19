@@ -42,7 +42,7 @@
       <div class="divider"></div>
     </section>
 
-    <section id='background' class='viz-container section fp-section'>
+    <section id='secondPage' class='viz-container section fp-section'>
       <h5>
         With millions of cases and over 500,000 deaths in the United States alone, the <br>
         Covid-19 pandemic has taken an enormous toll on our health, safety, and livelihoods. <br>
@@ -50,21 +50,22 @@
         distributed equitably. In this webpage, we explore mental health in 2020 among different <br>
         demographic groups in the context of the pandemic, while making comparisons to 2019.
       </h5>
+      <div class="divider"></div>
     </section>
 
-    <section id="secondPage" class="viz-container section fp-section"> 
+    <section id="thirdPage" class="viz-container section fp-section"> 
       <h5>Cumulative COVID-19 Case Counts and Deaths By State:</h5>    
       <div id='covid-data'></div>
     </section>
 
-    <section id='sixthPage' class="viz-container section fp-section">
-      <h5>Percentage of adults aged 18 and over who experienced symptoms of anxiety in 2019</h5> 
-      <p>It is interesting to  notice that non Hispanic white people are more likely to
-        experience anxiety symptoms than other races.</p>
-      <div id='md2019'></div>
+    <section id="fourthPage" class="viz-container section fp-section"> 
+      <h5>Percentage of Adult with Mental Health illness between 2019 and 2020, By state</h5>    
+      <div id='covid-Map-data'></div>
+      <h6>On Average, each state has a <span class="strong-text">1.2%</span> increase in the amount of adult who had mental illness.</h6>
+      <h6>The sum of increase in the count of Adult with mental Health issue is <span class="strong-text">3099000</span></h6>
     </section>
-
-    <section id="secondPage" class="viz-container section fp-section"> 
+    
+    <section id="sixthPage" class="viz-container section fp-section"> 
       <div id='chartwrapper'>
         <h5>Aggregate Comparison of Mental Health Concerns, 2019 and 2020</h5>    
 
@@ -77,7 +78,14 @@
       </div>
     </section>
 
-    <section id='narrative1' class='viz-container section fp-section'>
+    <section id='fifthPage' class="viz-container section fp-section">
+      <h5>Percentage of adults aged 18 and over who experienced symptoms of anxiety in 2019</h5> 
+      <p>It is interesting to  notice that non Hispanic white people are more likely to
+        experience anxiety symptoms than other races.</p>
+      <div id='md2019'></div>
+    </section>
+
+    <section id='seventhPage' class='viz-container section fp-section'>
       <h5>The pandemic has not affected everyone equally. Disproportionately Black communities <br>
           have experienced higher rates of Covid-19 cases and deaths. According to the Pew <br>
           Research Center, unemployment rates during the spring of 2020 exceeded those of the <br>
@@ -86,19 +94,21 @@
           of Covid-19. Our next few charts compare rates of depression and anxiety symptoms across <br>
           different demographic groups from April 2020 to February 2021.
       </h5>
+      <div class="divider"></div>
     </section>
 
-    <section id="thirdPage" class="viz-container section fp-section">
+    <section id="eighthPage" class="viz-container section fp-section">
       <h5>A Closer Look At Anxiety & Depression Symptoms in 2020: Sex</h5>    
       <div id='ind-gender'></div>
     </section>
   
-    <section id="fourthPage" class="viz-container section fp-section">
+    <section id="ninethPage" class="viz-container section fp-section">
       <h5>A Closer Look At Anxiety & Depression Symptoms in 2020: Race</h5>
       <div id='ind-race'></div>
+      <p class="desc-text">Here is some descriptive text about the chart</p>
     </section>
   
-    <section id='fifthPage' class="viz-container section fp-section">
+    <section id='tenthPage' class="viz-container section fp-section">
       <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5> 
       <div id='cases-mh'></div>
     </section>
@@ -120,13 +130,15 @@
       <div>
         <p>Special Thanks to Dr. Hoffswell and all of our amazing TAs</p>
       </div>
+      <div class="divider"></div>
    </section>
   </div> 
   
   <script src="javasript/indicators-race.js"></script>   
   <script src="javasript/covid.js"></script> 
   <script src="javasript/mental_health_2019.js"></script> 
-  <script src="javasript/index.js"></script> 
+  <script src="javasript/MH_aggregate_comparason.js"></script> 
+  <script src="javasript/covidMap.js"></script> 
 
   <!-- enabling fullpage.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.js" integrity="sha512-HqbDsHIJoZ36Csd7NMupWFxC7e7aX2qm213sX+hirN+yEx/eUNlZrTWPs1dUQDEW4fMVkerv1PfMohR1WdFFJQ==" crossorigin="anonymous"></script>
@@ -135,7 +147,7 @@
       //options here
       autoScrolling: true,
       navigation: true,
-      navigationTooltips: ['Introduction', 'background', "vis1", "vis2", "vis3", "break", "vis4", "vis5", "vis6", "Source and About Us"],
+      navigationTooltips: ['Introduction', 'background', "Covid Case Count by State", "Adult Mental Health", "Aggregate Comparasion", "Adult Anxiety", "Narrative", "Closer Look: Sex", "Closer Look: Race", "Covid and Anxiety", "Source and About Us"],
       showActiveTooltip: true
     });
   </script>

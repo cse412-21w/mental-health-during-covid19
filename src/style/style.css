@@ -46,10 +46,21 @@ body, html {
     margin-top:3em;
     height: .8em;
     width: 7em;
-    background-color: #d92626;
+    background-color: #F6573F;
 }
 
 .fp-tooltip {
     font-family: 'Shippori Mincho B1', serif !important;
     color: black !important;
+}
+
+.desc-text {
+    float: right;
+    padding-right: 15em;
+}
+
+.strong-text {
+    font-size: 4em;
+    font-weight: 500;
+    color: #F6573F;
 }
