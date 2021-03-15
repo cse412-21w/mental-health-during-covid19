@@ -36,7 +36,8 @@ function drawLineVegaLite() {
           vl.lookup('id').from(vl.data(Covid_2019_Data).key('id').fields(['state', 'rank', 'percentage', 'number']))
         )
         .encode(
-          vl.color().fieldQ('percentage').scale({scheme: 'Reds'}).legend({title: 'Percentage (%)'})
+          vl.color().fieldQ('percentage').scale({scheme: 'Reds'}).legend({title: 'Percentage (%)'}),
+          vl.tooltip(['state', 'percentage'])      
         )    
    )
         .width(400)
@@ -52,7 +53,8 @@ function drawLineVegaLite() {
           vl.lookup('id').from(vl.data(Covid_2020_Data).key('id ').fields(['state', 'rank', 'percentage', 'number']))
         )
         .encode(
-          vl.color().fieldQ('percentage').scale({scheme: 'Reds'}).legend({title: 'Percentage (%)'})
+          vl.color().fieldQ('percentage').scale({scheme: 'Reds'}).legend({title: 'Percentage (%)'}),
+          vl.tooltip(['state', 'percentage'])
         )    
    )
     .width(400)
