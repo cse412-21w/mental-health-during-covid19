@@ -185,7 +185,7 @@ return vl.markCircle()
 .encode(
   vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
   vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
-  vl.color({title: 'Education Level'}).fieldN('Subgroup'),
+  vl.color({title: 'Education Level'}).fieldN('Subgroup').sort(edlevels),
   
   vl.tooltip('Value'),
   vl.opacity().if(selection2, vl.value(1)).value(0)

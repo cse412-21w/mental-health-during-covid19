@@ -289,7 +289,7 @@ function drawIndicatorsEducationVegaLite() {
     title: '% of the US Adult Population'
   }).fieldQ('Value'), vl.color({
     title: 'Education Level'
-  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(400).render().then(function (viewElement) {
+  }).fieldN('Subgroup').sort(edlevels), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(400).render().then(function (viewElement) {
     document.getElementById('ind-ed').appendChild(viewElement);
   });
 }
@@ -325,4 +325,4 @@ function drawCasesSymptomsVegaLite() {
 }
 */
 },{"../../static/merge.csv":"L1Tp","../../static/merge_race.csv":"nMLH","../../static/merge_gender.csv":"eL8k","../../static/all_education2.csv":"vDmK"}]},{},["FSVR"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.693ffb26.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.7f01bb78.js.map

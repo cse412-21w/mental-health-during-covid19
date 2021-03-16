@@ -289,7 +289,7 @@ function drawIndicatorsEducationVegaLite() {
     title: '% of the US Adult Population'
   }).fieldQ('Value'), vl.color({
     title: 'Education Level'
-  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(400).render().then(function (viewElement) {
+  }).fieldN('Subgroup').sort(edlevels), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(400).render().then(function (viewElement) {
     document.getElementById('ind-ed').appendChild(viewElement);
   });
 }
@@ -352,7 +352,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63259" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63624" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
