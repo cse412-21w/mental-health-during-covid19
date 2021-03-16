@@ -151,6 +151,11 @@ vl.register(vega, vegaLite, options);
 drawYouthAdultComparasionVegaLite();
 
 function drawYouthAdultComparasionVegaLite() {
+  var label = {
+    align: 'center',
+    dx: 5,
+    dy: +10
+  };
   var adultChart = vl.markBar({
     color: '#F6573F'
   }).title({
@@ -160,6 +165,11 @@ function drawYouthAdultComparasionVegaLite() {
   }).fieldN('year').axis({
     "labelAngle": 0
   }), vl.y().fieldQ('count').title('Number of Adults')).width(200).height(400);
+  var adultText = vl.markText(label).data(_adult_mh_prevalance_aggregate.default).encode(vl.x({
+    title: 'Year'
+  }).fieldN('year').axis({
+    "labelAngle": 0
+  }), vl.y().fieldQ('count').title('Number of Adults'), vl.text().fieldQ('count'));
   var youthChart = vl.markBar({
     color: '#F6573F'
   }).title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x({
@@ -167,9 +177,14 @@ function drawYouthAdultComparasionVegaLite() {
   }).fieldN('year').axis({
     "labelAngle": 0
   }), vl.y().fieldQ('count').title('Number of Youth')).width(200).height(400);
-  vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
+  var youthText = vl.markText(label).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x({
+    title: 'Year'
+  }).fieldN('year').axis({
+    "labelAngle": 0
+  }), vl.y().fieldQ('count').title('Number of Adults'), vl.text().fieldQ('count'));
+  vl.hconcat(vl.layer(adultChart, adultText), vl.layer(youthChart, youthText)).render().then(function (viewElement) {
     document.getElementById('aggegrate-comparasion').appendChild(viewElement);
   });
 }
 },{"../../static/adult_mh_prevalance_aggregate.csv":"kWp5","../../static/youth_prevalance_of_mde_aggregate.csv":"TLC3"}]},{},["YyRC"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/MH_aggregate_comparason.15373325.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/MH_aggregate_comparason.eb31901d.js.map

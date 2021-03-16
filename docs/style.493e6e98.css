@@ -27,7 +27,7 @@ body, html {
       rgba(0, 0, 0, 0.7)
     ),
     
-    url("https://cse412-21w.github.io/mental-health-during-covid19/OIP.9938ca13.jpg");
+    url("/OIP.09eeef1e.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,6 +68,13 @@ body, html {
     width: 25em;
 }
 
+.desc-text2 {
+    position: absolute;
+    left: 55em;
+    bottom: 20em;
+    width: 35em;
+}
+
 .strong-text {
     font-size: 3em;
     font-weight: 500;
@@ -88,4 +95,4 @@ body, html {
     left: 55em;
 }
 
-/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.761e5e41.css.map */
+/*# sourceMappingURL=/style.493e6e98.css.map */
