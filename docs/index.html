@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cse412-21w.github.io/mental-health-during-covid19/style.bdf55af1.css">
+    <link rel="stylesheet" href="https://cse412-21w.github.io/mental-health-during-covid19/style.26587cd3.css">
     <!-- fullpage.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.0/fullpage.min.css" integrity="sha512-RVmrWua3k1yTDEOg4Yzs2bK5+Thh7nM6jrhDq/6/5/Mwa0JbYe4pP4YMK5sqghKz01T3DgrwYc57Jaf1PSurCg==" crossorigin="anonymous">
      <!-- Bootstrap -->
@@ -82,13 +82,16 @@
     
     <section id="sixthPage" class="viz-container section fp-section"> 
       <div id="chartwrapper">
-        <h5>Aggregate Comparison of Mental Health Concerns, 2019 and 2020</h5>    
+        <h5>Aggregate Comparison of Mental Health Concerns in the US, 2019 and 2020</h5>    
 
         <div id="text-wrapper">
-          <p>From 2019 to 2020, there was a significant increase in the number of adults with any mental illness <br>
-             and a striking 65% growth in the number of youth who experienced at least one major depressive episode. </p>
         </div>
         <div id="aggegrate-comparasion"></div>
+        <div class="desc-text">
+          <p>From 2019 to 2020, there was a significant increase in the number of adults with any
+             mental illness and a striking 65% growth in the number of youth who experienced at least
+             one major depressive episode (MDE).</p>
+        </div>
       </div>
     </section>
 
@@ -96,7 +99,7 @@
       <h5>Percentage of adults aged 18 and over who experienced symptoms of anxiety in 2019</h5> 
       <p>Note that non-Hispanic white adults were most likely to
         report any anxiety symptoms in 2019, at <span class="strong-text">16.5%.</span></p>
-      <div id="md2019"></div>
+      <div id="md2019"></div>         
     </section>
 
     <section id="eighthPage" class="viz-container section fp-section">
@@ -114,6 +117,15 @@
     <section id="ninthPage" class="viz-container section fp-section">
       <h5>A Closer Look At Anxiety & Depression Symptoms in 2020: Sex</h5>    
       <div id="ind-gender"></div>
+      <div class="desc-text">
+        <p>
+          The data on anxiety and depression in these last few charts comes from the CDC Household Pulse
+          Survey, which was conducted via online surveys. While this data was collected for the purpose of
+          gauging the prevalence of mental health concerns during the pandemic, it is important to note
+          that the data collection methods and response rate on this survey differed from most national
+          surveys that the CDC conducts.
+        </p>
+      </div>
     </section>
   
     <section id="tenthPage" class="viz-container section fp-section">
@@ -129,6 +141,14 @@
     <section id="eleventhPage" class="viz-container section fp-section">
       <h5>Daily COVID-19 Cases and Symptoms of Anxiety & Depressive Disorders</h5> 
       <div id="cases-mh"></div>
+      <div class="desc-text">
+        <p>
+          Let's take one final look at the overall prevalence of anxiety and depressive symptoms
+          in the context of the counts of new Covid-19 cases. Select a portion of the top chart
+          and brush over it to view the prevalence of depression and anxiety symptoms in the same
+          time frame.
+        </p>
+      </div>
     </section>
 
     <section id="twelfthPage" class="viz-container section fp-section">
@@ -163,12 +183,13 @@
         <br>
         <h5>All visualizations created using the <a href="https://vega.github.io/vega-lite-api/">Vega-Lite API</a></h5>
         <br>
-        <h5>Designed and built by</h5> 
-        <h5>Yichi Zhang, Jamie Forschmiedt, and Travis Xie</h5>
+        <h5>This website was designed and built by</h5> 
+        <h5><b>Yichi Zhang, Jamie Forschmiedt, and Travis Xie</b></h5>
+        <h5>for CSE 412: "Introduction to Data Visualization" at the University of Washington. </h5>
       </div>
       <br>
       <div>
-        <h5>Huge thanks to Dr. Hoffswell and all of our amazing TAs</h5>
+        <h5>Huge thanks to Dr. Hoffswell and all of our amazing TAs!</h5>
       </div>
       <div class="divider"></div>
    </section>
@@ -177,7 +198,7 @@
   <script src="https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.bd6caecf.js"></script>   
   <script src="https://cse412-21w.github.io/mental-health-during-covid19/covid.7c39b17e.js"></script> 
   <script src="https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.e6d10020.js"></script> 
-  <script src="https://cse412-21w.github.io/mental-health-during-covid19/MH_aggregate_comparason.5c003d83.js"></script> 
+  <script src="https://cse412-21w.github.io/mental-health-during-covid19/MH_aggregate_comparason.15373325.js"></script> 
   <script src="https://cse412-21w.github.io/mental-health-during-covid19/covidMap.245ff5f8.js"></script> 
 
   <!-- enabling fullpage.js -->
@@ -186,7 +207,7 @@
   //options here
   autoScrolling: true,
   navigation: true,
-  navigationTooltips: ['Introduction', 'Background', "Covid Case Count by State", 'Narrative', "Adult Mental Health", "Aggregate Comparison", "Adult Anxiety", "Narrative", "Closer Look: Sex", "Closer Look: Race", "Covid and Anxiety/Depression", "Demo Video", "Source and About Us"],
+  navigationTooltips: ['Introduction', 'Background', "Covid Case Count by State", 'Narrative', "Adult Mental Health", "Aggregate Comparison", "Adult Anxiety", "Narrative", "Closer Look: Sex", "Closer Look: Race", "Covid and Anxiety/Depression", "Demo Video", "References and About Us"],
   showActiveTooltip: true
 });</script>
 </body>

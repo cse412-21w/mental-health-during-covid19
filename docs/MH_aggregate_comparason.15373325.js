@@ -155,17 +155,21 @@ function drawYouthAdultComparasionVegaLite() {
     color: '#F6573F'
   }).title({
     "text": "Number of Adults With Any Mental Illness, 2019 and 2020"
-  }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x().fieldN('year').axis({
+  }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x({
+    title: 'Year'
+  }).fieldN('year').axis({
     "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
+  }), vl.y().fieldQ('count').title('Number of Adults')).width(200).height(400);
   var youthChart = vl.markBar({
     color: '#F6573F'
-  }).title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
+  }).title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x({
+    title: 'Year'
+  }).fieldN('year').axis({
     "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
+  }), vl.y().fieldQ('count').title('Number of Youth')).width(200).height(400);
   vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
     document.getElementById('aggegrate-comparasion').appendChild(viewElement);
   });
 }
 },{"../../static/adult_mh_prevalance_aggregate.csv":"kWp5","../../static/youth_prevalance_of_mde_aggregate.csv":"TLC3"}]},{},["YyRC"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/MH_aggregate_comparason.5c003d83.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/MH_aggregate_comparason.15373325.js.map

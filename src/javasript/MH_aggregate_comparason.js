@@ -31,8 +31,8 @@ function drawYouthAdultComparasionVegaLite() {
     .title({"text": "Number of Adults With Any Mental Illness, 2019 and 2020"})
     .data(adult_aggregate_data)
     .encode(
-      vl.x().fieldN('year').axis({"labelAngle": 0}),
-      vl.y().fieldQ('count').title('Number Count')
+      vl.x({title: 'Year'}).fieldN('year').axis({"labelAngle": 0}),
+      vl.y().fieldQ('count').title('Number of Adults')
     )
     .width(200)
     .height(400)
@@ -41,8 +41,8 @@ function drawYouthAdultComparasionVegaLite() {
     .title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"])
     .data(youth_aggregate_data)
     .encode(
-        vl.x().fieldN('year').axis({"labelAngle": 0}),
-        vl.y().fieldQ('count').title('Number Count')
+        vl.x({title: 'Year'}).fieldN('year').axis({"labelAngle": 0}),
+        vl.y().fieldQ('count').title('Number of Youth')
     )
     .width(200)
     .height(400)

@@ -155,14 +155,18 @@ function drawYouthAdultComparasionVegaLite() {
     color: '#F6573F'
   }).title({
     "text": "Number of Adults With Any Mental Illness, 2019 and 2020"
-  }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x().fieldN('year').axis({
+  }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x({
+    title: 'Year'
+  }).fieldN('year').axis({
     "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
+  }), vl.y().fieldQ('count').title('Number of Adults')).width(200).height(400);
   var youthChart = vl.markBar({
     color: '#F6573F'
-  }).title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
+  }).title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x({
+    title: 'Year'
+  }).fieldN('year').axis({
     "labelAngle": 0
-  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
+  }), vl.y().fieldQ('count').title('Number of Youth')).width(200).height(400);
   vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
     document.getElementById('aggegrate-comparasion').appendChild(viewElement);
   });
@@ -195,7 +199,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61662" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62056" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
