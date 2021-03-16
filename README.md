@@ -2,9 +2,9 @@
 ## Team Members
 Jamie Forschmiedt, Travis Xie, Yichi Zhang
 ### Contribution Statements
-- Jamie created the graphs in the "Closer Look" sections on gender, race, and education level and the graph of new daily Covid-19 cases alongside the prevalence of anxiety and depression. She also added the narrative descriptions, wrote the demo video script and recorded the video.
+- Jamie created the graphs in the "Closer Look" sections on gender, race, and education level and the "Daily Covid-19 Cases and Symptoms of Anxiety & Depressive Disorders" graph. She also added the narrative descriptions, wrote the demo video script and recorded the video.
 - Travis
-- Yichi
+- Yichi created the graph of "Percentage of Adults with Any Mental Illness Between 2019 and 2020, by State" and "Aggregate Comparison of Mental Health Concerns in the US, 2019 and 2020". He also laid down the fullpage infrastructure, designed the website with CSS, and solved many web-related technical issues. 
 ## Project Proposal Abstract
 The COVID-19 pandemic has completely changed our way of life and resulted in prolonged stress due to the toll of the virus, long lockdowns, and lack of social interaction. Meanwhile, the parallel pandemic of racism and political turbulence exacerbates the existing problem of mental health. To convey the severity of mental health concern as impacted by COVID-19, we decided to make an interactive data visualization project to examine the burden of mental illness including anxiety and depression in the United States during 2020 and compare them with 2019. First, we will use the author-based model to tell the audience our insight by examining the datasets. Then we plan to incorporate explorative visualizations that allow the audience to select demographic categories & examine mental health trends between 2019 and 2020. 
 

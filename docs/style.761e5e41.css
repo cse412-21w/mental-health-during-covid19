@@ -65,8 +65,7 @@ body, html {
     position: absolute;
     left: 50em;
     bottom: 20em;
-    width: 20em;
-
+    width: 25em;
 }
 
 .strong-text {
@@ -85,4 +84,8 @@ body, html {
     color: white;
 }
 
-/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.26587cd3.css.map */
+.wide {
+    left: 55em;
+}
+
+/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.761e5e41.css.map */

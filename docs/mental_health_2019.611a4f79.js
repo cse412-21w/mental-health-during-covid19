@@ -166,7 +166,8 @@ function drawLineVegaLite() {
   vl.markBar().data(_mental_health_.default).encode(vl.column().fieldN('type').spacing(10).title(null), vl.y({
     title: 'Percentage'
   }).fieldQ('percentage'), vl.x().fieldN('race').sort(vl.fieldQ('percentage')).axis({
-    title: null
+    title: null,
+    labelAngle: 45
   }), vl.color({
     title: 'Race'
   }).fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(150).height(400).render().then(function (viewElement) {
@@ -203,7 +204,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63259" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56458" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
