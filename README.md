@@ -7,7 +7,8 @@ Jamie Forschmiedt, Travis Xie, Yichi Zhang
 - Yichi created the graph of "Percentage of Adults with Any Mental Illness Between 2019 and 2020, by State" and "Aggregate Comparison of Mental Health Concerns in the US, 2019 and 2020". He also laid down the fullpage infrastructure, designed the website with CSS, and solved many web-related technical issues. 
 ## Project Proposal Abstract
 The COVID-19 pandemic has completely changed our way of life and resulted in prolonged stress due to the toll of the virus, long lockdowns, and lack of social interaction. Meanwhile, the parallel pandemic of racism and political turbulence exacerbates the existing problem of mental health. To convey the severity of mental health concern as impacted by COVID-19, we decided to make an interactive data visualization project to examine the burden of mental illness including anxiety and depression in the United States during 2020 and compare them with 2019. First, we will use the author-based model to tell the audience our insight by examining the datasets. Then we plan to incorporate explorative visualizations that allow the audience to select demographic categories & examine mental health trends between 2019 and 2020. 
-
+## Note:
+Our webpage is not designed to be comaptible with mobile device so please use the laptop or the computer to view the page.
 ## Getting Started
 
 This repo is set up to use the [Parcel](https://parceljs.org/) bundler. If you don't
