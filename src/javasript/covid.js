@@ -1,4 +1,3 @@
-import casedata from '../../static/us-states.csv'    // import dataset
 "use strict";     // the code should be executed in "strict mode".
                   // With strict mode, you can not, for example, use undeclared variables
 
@@ -42,6 +41,7 @@ d3.csv(url).then(function(data) {
   drawLineVegaLite();
 });
 
+/*
 function drawLineVegaLite() {
   const layer1 = plot('cases')
     .width(800)
@@ -62,7 +62,6 @@ function drawLineVegaLite() {
     });
 }
 
-/*
 function plot(field) {
   const selection = vl.selectSingle('Select')
     .fields('state')
