@@ -53,22 +53,11 @@ drawCasesSymptomsVegaLite();
 
 
 function drawIndicatorsGenderVegaLite() {
-  /*const selection2 = vl.selectSingle('Select')
-  .fields('Indicator')
-  .init({Indicator: 'Symptoms of Anxiety Disorder'})
-  .bind({Indicator: vl.menu(indicators).name('Symptom Type: ')});
+  const hover = vl.selectSingle()
+    .on('mouseover')
+    .clear('mouseout')
+    .nearest(true);
 
-  return vl.markCircle()
-    .data(all_gender)
-    .title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Gender, April 2020 - February 2021'])
-    .select(selection2)
-    .encode(
-      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
-      vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
-      vl.color({title: 'Gender'}).fieldN('Subgroup'),
-      vl.tooltip('Value'),
-      vl.opacity().if(selection2, vl.value(1)).value(0)
-  ) */
   const selection2 = vl.selectSingle('Select')
     .fields('SymptomType')
     .init({SymptomType: 'Anxiety'})
@@ -77,13 +66,16 @@ function drawIndicatorsGenderVegaLite() {
   return vl.markCircle()
     .data(merge_gender)
     .title('Symptoms of Depression and Anxiety by Sex, April 2020 - February 2021')
-    .select(selection2)
+    .select(selection2, hover)
+    .transform(
+      vl.filter(selection2)
+    )
     .encode(
       vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods).axis({grid: true, tickBand: 'extent'}),
       vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
       vl.color({title: 'Sex'}).fieldN('Subgroup'),
       vl.tooltip('Value'),
-      vl.opacity().if(selection2, vl.value(1)).value(0)
+      vl.opacity().if(hover, vl.value(1)).value(0.6)
   )
   .width(450)
   .height(400)
@@ -96,40 +88,29 @@ function drawIndicatorsGenderVegaLite() {
 }
 
 function drawIndicatorsRaceVegaLite() {
-  /*const selection = vl.selectSingle('Select')
-    .fields('Indicator', 'Subgroup')
-    .init({Indicator: 'Symptoms of Anxiety Disorder', Subgroup: 'Non-Hispanic black, single race'})
-    .bind({Indicator: vl.menu(indicators), Subgroup: vl.menu(races)});
-           
-     vl.markCircle()
-    .data(all_race)
-    .title('Symptoms of Anxiety and Depressive Disorder, April 2020 - February 2021')
-    .select(selection)
-    .encode(
-      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
-      vl.y({title: 'Percentage of population'}).fieldQ('Value'),
-      vl.tooltip().fieldQ('Value'),
-      vl.color({title: 'Race/Ethnicity'}).fieldN('Subgroup'),
-      vl.opacity().if(selection, vl.value(1)).value(0)
-    )
-    .width(450)
-    .height(450)
-    .render() */
-    const selection = vl.selectSingle('Select')
+  const hover = vl.selectSingle()
+    .on('mouseover')
+    .clear('mouseout')
+    .nearest(true);
+
+  const selection = vl.selectSingle('Select')
     .fields('SymptomType')
     .init({SymptomType: 'Anxiety'})
     .bind({SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')});
            
-    vl.markCircle()
+  vl.markCircle()
     .data(merge_race)
     .title(['% of US Adults with Symptoms of Anxiety and', 'Depressive Disorder by Race, April 2020 - February 2021'])
-    .select(selection)
+    .select(selection, hover)
+    .transform(
+      vl.filter(selection)
+    )
     .encode(
       vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods).axis({grid: true, tickBand: 'extent'}),
       vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
       vl.tooltip().fieldQ('Value'),
       vl.color({title: 'Race/Ethnicity'}).fieldN('Subgroup2'),
-      vl.opacity().if(selection, vl.value(1)).value(0),
+      vl.opacity().if(hover, vl.value(1)).value(0.6),
     )
     .width(450)
     .height(400)
@@ -142,8 +123,13 @@ function drawIndicatorsRaceVegaLite() {
 
 // COVID cases and Anxiety/Depression 
 function drawCasesSymptomsVegaLite() {
+  const hover = vl.selectSingle()
+    .on('mouseover')
+    .clear('mouseout')
+    .nearest(true);
+
   const brush = vl.selectInterval()
-  .encodings('x');
+    .encodings('x')
 
   const cases = vl.markArea({color: '#F6573F'})
     .data(merge)
@@ -155,17 +141,18 @@ function drawCasesSymptomsVegaLite() {
 
   const mh = vl.markCircle()
     .data(merge)
+    .select(hover)
     .encode(
       vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
       vl.y({title: 'Percentage of population'}).fieldQ('Value'),
       vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
       vl.tooltip().fieldQ('Value'),
+      vl.size().if(hover, vl.value(30)).value(10),
       vl.opacity().if(brush, vl.value(1)).value(0.005)
   ).width(500).height(240)
 
-  return vl.vconcat(cases, mh).spacing(5).title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
-      //.width(450)
-      //.height(450)
+  return vl.vconcat(cases, mh).spacing(5)
+      .title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
       .render()
       .then(viewElement => {
       document.getElementById('cases-mh').appendChild(viewElement);
@@ -173,61 +160,34 @@ function drawCasesSymptomsVegaLite() {
 } 
 
 function drawIndicatorsEducationVegaLite() {
+  const hover = vl.selectSingle()
+    .on('mouseover')
+    .clear('mouseout')
+    .nearest(true);
+
   const selection2 = vl.selectSingle('Select')
-  .fields('SymptomType')
-  .init({SymptomType: 'Anxiety'})
-  .bind({SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')});
+    .fields('SymptomType')
+    .init({SymptomType: 'Anxiety'})
+    .bind({SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')});
 
-return vl.markCircle()
-.data(all_education2)
-.title('Symptoms of Depression and Anxiety by Education, April 2020 - February 2021')
-.select(selection2)
-.encode(
-  vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
-  vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
-  vl.color({title: 'Education Level'}).fieldN('Subgroup').sort(edlevels),
-  
-  vl.tooltip('Value'),
-  vl.opacity().if(selection2, vl.value(1)).value(0)
-)
-.width(450)
-.height(400)
-.render()
-    .then(viewElement => {
-    document.getElementById('ind-ed').appendChild(viewElement);
-  });
-}
-
-
-/*
-function drawCasesSymptomsVegaLite() {
-  const cases = vl.markLine({color: 'teal'})
-    .data(newcases)
+  return vl.markCircle()
+    .data(all_education2)
+    .title('Symptoms of Depression and Anxiety by Education, April 2020 - February 2021')
+    .select(selection2, hover)
     .transform(
-      vl.groupby('TimePeriodLabel').
-        aggregate(vl.sum('newcases').as('period_cases')),
+      vl.filter(selection2)
     )
     .encode(
       vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
-      vl.y({title: 'New COVID-19 Cases'}).fieldQ('period_cases')
-    ).width(500).height(240)
-
-  const mh = vl.markLine()
-    .data(merge)
-    .encode(
-      vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
-      vl.y({title: 'Percentage of population'}).fieldQ('Value'),
-      vl.color().fieldN('SymptomType').legend({orient: 'bottom', title: 'Symptom Type'}),
-      vl.tooltip().fieldQ('Value'),
-  ).width(500).height(240)
-
-  return vl.layer(cases, mh)
-      .resolve({scale: {y: "independent"}})
-      .title('New COVID-19 Cases and Symptoms of Anxiety and Depressive Disorder, Apr 2020 - Feb 2021')
-      .render()
+      vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
+      vl.color({title: 'Education Level'}).fieldN('Subgroup').sort(edlevels),
+      vl.tooltip('Value'),
+      vl.opacity().if(hover, vl.value(1)).value(0.6)
+    )
+    .width(450)
+    .height(400)
+    .render()
       .then(viewElement => {
-        document.getElementById('cases-mh').appendChild(viewElement);
-    });
+      document.getElementById('ind-ed').appendChild(viewElement);
+  });
 }
-*/
-

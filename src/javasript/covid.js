@@ -153,7 +153,7 @@ function drawLineVegaLite() {
     )
     .encode(
       vl.opacity().if(hover, vl.value(1)).value(0),
-      vl.tooltip([vl.fieldT('date')])
+      vl.tooltip().fieldT('date')
     );
 
   const casepoints = vl.markCircle({size: 30})
@@ -161,7 +161,7 @@ function drawLineVegaLite() {
       vl.filter(selection)
     )
     .encode(
-      vl.y({title: 'Cases'}).fieldQ('cases'),
+      vl.y().fieldQ('cases'),
       vl.opacity().if(hover, vl.value(1)).value(0)
     );
 
@@ -170,7 +170,7 @@ function drawLineVegaLite() {
       vl.filter(selection)
     )
     .encode(
-      vl.y({title: 'Death'}).fieldQ('cases'),
+      vl.y().fieldQ('cases'),
       vl.opacity().if(hover, vl.value(1)).value(0),
       vl.text().fieldQ('cases')
     )
@@ -200,7 +200,7 @@ function drawLineVegaLite() {
     )
     .encode(
       vl.opacity().if(hover, vl.value(1)).value(0),
-      vl.tooltip([vl.fieldT('date')])
+      vl.tooltip().fieldT('date')
     );
 
   const death_points = vl.markCircle({size: 30})
@@ -208,7 +208,7 @@ function drawLineVegaLite() {
       vl.filter(selection)
     )
     .encode(
-      vl.y({title: 'Death'}).fieldQ('deaths'),
+      vl.y().fieldQ('deaths'),
       vl.opacity().if(hover, vl.value(1)).value(0)
     );
     
@@ -217,7 +217,7 @@ function drawLineVegaLite() {
         vl.filter(selection)
       )
       .encode(
-        vl.y({title: 'Death'}).fieldQ('deaths'),
+        vl.y().fieldQ('deaths'),
         vl.opacity().if(hover, vl.value(1)).value(0),
         vl.text().fieldQ('deaths')
       )
