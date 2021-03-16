@@ -166,7 +166,8 @@ function drawLineVegaLite() {
   vl.markBar().data(_mental_health_.default).encode(vl.column().fieldN('type').spacing(10).title(null), vl.y({
     title: 'Percentage'
   }).fieldQ('percentage'), vl.x().fieldN('race').sort(vl.fieldQ('percentage')).axis({
-    title: null
+    title: null,
+    labelAngle: 45
   }), vl.color({
     title: 'Race'
   }).fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(150).height(400).render().then(function (viewElement) {
@@ -176,4 +177,4 @@ function drawLineVegaLite() {
   });
 }
 },{"../../static/mental_health_2019.csv":"UAIM"}]},{},["ojpZ"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.e6d10020.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.49ef2a2b.js.map
