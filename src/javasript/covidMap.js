@@ -30,7 +30,7 @@ function drawLineVegaLite() {
 
     const Covid2019 = vl.layer (
         vl.markGeoshape({stroke: '#aaa', strokeWidth: 0.25})
-        .title("Percentage of Adult with any Mental illness by State in 2019")
+        .title("Percentage of Adults with Any Mental Illness by State in 2019")
         .data(vl.topojson(us_json).feature('states'))
         .transform(
           vl.lookup('id').from(vl.data(Covid_2019_Data).key('id').fields(['state', 'rank', 'percentage', 'number']))
@@ -47,7 +47,7 @@ function drawLineVegaLite() {
     
     const Covid2020 = vl.layer (
         vl.markGeoshape({stroke: '#aaa', strokeWidth: 0.25})
-        .title("Percentage of Adult with any Mental illness by State in 2020")
+        .title("Percentage of Adults with Any Mental Illness by State in 2020")
         .data(vl.topojson(us_json).feature('states'))
         .transform(
           vl.lookup('id').from(vl.data(Covid_2020_Data).key('id ').fields(['state', 'rank', 'percentage', 'number']))
