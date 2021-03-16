@@ -22,11 +22,11 @@ const options = {
 };
 
 vl.register(vega, vegaLite, options);
+var url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv";
+var dataArray = [];
+var stateArray = [];
 
-var dataArray = []
-var stateArray = []
-
-d3.csv(casedata).then(function(data) {
+d3.csv(url).then(function(data) {
   data.forEach(function(d){
     const parseDate = d3.utcParse("%Y-%m-%d");
     var date = parseDate(d.date);
@@ -42,6 +42,78 @@ d3.csv(casedata).then(function(data) {
   drawLineVegaLite();
 });
 
+function drawLineVegaLite() {
+  const layer1 = plot('cases')
+    .width(800)
+    .height(300)
+    .title("Cumulative COVID-19 Case Counts");
+
+  const layer2 = plot('deaths')
+    .width(800)
+    .height(150)
+    .title("Cumulative COVID-19 Death Counts");
+
+  return vl.vconcat(layer1, layer2).spacing(5)
+    .render()
+    .then(viewElement => {
+      // render returns a promise to a DOM element containing the chart
+      // viewElement.value contains the Vega View object instance
+      document.getElementById('covid-data').appendChild(viewElement);
+    });
+}
+
+/*
+function plot(field) {
+  const selection = vl.selectSingle('Select')
+    .fields('state')
+    .init({'state': 'Washington'})
+    .bind(vl.menu(stateArray).name('State: '))
+
+  const hover = vl.selectSingle()
+    .fields('date')
+    .on('mouseover') // select on mouseover
+    .clear('mouseout')
+    .nearest(true)   // select nearest point to mouse cursor
+    .empty("none")
+
+  //const label = {align: 'left', dx: 5, dy: -5};
+
+  const line = vl.markLine({color: '#F6573F'})
+    .select(selection)
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.y().fieldQ(field),
+    )
+    
+  const tip = vl.markRule({color: "#aaa"})
+    .select(hover)
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.opacity().if(hover, vl.value(1)).value(0),
+      vl.tooltip([vl.fieldT('date'), vl.fieldQ(field)])
+    );
+
+  const point = vl.markCircle({size: 30})
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.y().fieldQ(field),
+      vl.opacity().if(hover, vl.value(1)).value(0)
+    );
+
+  return vl.layer(line, tip, point)
+    .data(dataArray)
+    .encode(
+      vl.x({title: 'Date'}).fieldT('date')
+    );
+}
+*/
+
 //stateArray = stateArray.sort();
 
 function drawLineVegaLite() {
@@ -52,35 +124,111 @@ function drawLineVegaLite() {
     .init({'state': 'Washington'})
     .bind(vl.menu(stateArray).name('State: '))
 
+  const hover = vl.selectSingle()
+    .fields('date')
+    .on('mouseover') // select on mouseover
+    .clear('mouseout')
+    .nearest(true)   // select nearest point to mouse cursor
+    .empty("none")
+
+  const label = {align: 'left', dx: 5, dy: -5};
+  const white = {stroke: 'white', strokeWidth: 2};
+    
   const cases = vl.markLine({color: '#F6573F'})
-      .data(dataArray)
-      .select(selection)
+    .select(selection)
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.y({title: 'Cases'}).fieldQ('cases'),
+    )
+    .width(800)
+    .height(300)
+    .title("Cumulative COVID-19 Case Counts");
+ 
+  const casetip = vl.markRule({color: "#aaa"})
+    .select(hover)
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.opacity().if(hover, vl.value(1)).value(0),
+      vl.tooltip([vl.fieldT('date')])
+    );
+
+  const casepoints = vl.markCircle({size: 30})
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.y({title: 'Cases'}).fieldQ('cases'),
+      vl.opacity().if(hover, vl.value(1)).value(0)
+    );
+
+  const case_text = vl.markText(label)
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.y({title: 'Death'}).fieldQ('cases'),
+      vl.opacity().if(hover, vl.value(1)).value(0),
+      vl.text().fieldQ('cases')
+    )
+    
+  const layer1 = vl.layer(cases, casetip, casepoints, case_text)
+    .data(dataArray)
+    .encode(
+      vl.x({title: 'Date'}).fieldT('date')
+    );
+
+  const death = vl.markLine({color: '#F6573F'})
+    .select(selection)
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.y({title: 'Deaths'}).fieldQ('deaths'),
+    )
+    .width(800)
+    .height(150)
+    .title("Cumulative COVID-19 Death Counts");
+ 
+  const deathTip = vl.markRule({color: "#aaa"})
+    .select(hover)
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.opacity().if(hover, vl.value(1)).value(0),
+      vl.tooltip([vl.fieldT('date')])
+    );
+
+  const death_points = vl.markCircle({size: 30})
+    .transform(
+      vl.filter(selection)
+    )
+    .encode(
+      vl.y({title: 'Death'}).fieldQ('deaths'),
+      vl.opacity().if(hover, vl.value(1)).value(0)
+    );
+    
+  const death_text = vl.markText(label)
       .transform(
         vl.filter(selection)
       )
       .encode(
-        vl.x({title: 'Date'}).fieldT('date'),
-        vl.y({title: 'Cases'}).fieldQ('cases'),
-        vl.tooltip(['date', 'cases'])
+        vl.y({title: 'Death'}).fieldQ('deaths'),
+        vl.opacity().if(hover, vl.value(1)).value(0),
+        vl.text().fieldQ('deaths')
       )
-      .width(400)
-      .height(450);
 
-    const death = vl.markLine({color: '#F6573F'})
-        .data(dataArray)
-        .select(selection)
-        .transform(
-          vl.filter(selection)
-        )
-        .encode(
-          vl.x({title: 'Date'}).fieldT('date'),
-          vl.y({title: 'Deaths'}).fieldQ('deaths'),
-          vl.tooltip(['date', 'deaths'])
-        )
-        .width(400)
-        .height(450);
-
-  return vl.hconcat(cases, death).spacing(5)
+  const layer2 = vl.layer(death, deathTip, death_points, death_text)
+    .data(dataArray)
+    .encode(
+      vl.x({title: 'Date'}).fieldT('date')
+    );
+    
+  return vl.vconcat(layer1, layer2).spacing(5)
     .render()
     .then(viewElement => {
       // render returns a promise to a DOM element containing the chart
@@ -88,3 +236,6 @@ function drawLineVegaLite() {
       document.getElementById('covid-data').appendChild(viewElement);
     });
 }
+
+
+
