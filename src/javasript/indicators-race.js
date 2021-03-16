@@ -2,6 +2,7 @@ import merge from '../../static/merge.csv';
 //import newcases from '../static/newcases_period.csv';
 import merge_race from '../../static/merge_race.csv';
 import merge_gender from '../../static/merge_gender.csv';
+import all_education2 from '../../static/all_education2.csv';
 
 /* var vl = require('vega-lite-api');
 var vegaLite = require('vega-lite');
@@ -21,7 +22,9 @@ var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 
                 'Aug 19 - Aug 31', 'Sep 2 - Sep 14', 'Sep 16 - Sep 28', 'Sep 30 - Oct 12',
                 'Oct 14 - Oct 26', 'Oct 28 - Nov 9', 'Nov 11 - Nov 23', 'Nov 25 - Dec 7', 
                 'Dec 9 - Dec 21', 'Jan 6 - Jan 18', 'Jan 20 - Feb 1'];
-var symptomtypes = ['Anxiety', 'Depressive', 'Anxiety or Depressive']
+var symptomtypes = ['Anxiety', 'Depressive', 'Anxiety or Depressive'];
+var edlevels = ['Less than a high school diploma', 'High school diploma or GED', 
+                "Some college/Associate's degree", "Bachelor's degree or higher"];
 
 const options = {
   config: {
@@ -45,7 +48,9 @@ vl.register(vega, vegaLite, options);
 
 drawIndicatorsGenderVegaLite();
 drawIndicatorsRaceVegaLite();
+drawIndicatorsEducationVegaLite();
 drawCasesSymptomsVegaLite();
+
 
 function drawIndicatorsGenderVegaLite() {
   /*const selection2 = vl.selectSingle('Select')
@@ -166,6 +171,32 @@ function drawCasesSymptomsVegaLite() {
       document.getElementById('cases-mh').appendChild(viewElement);
     });
 } 
+
+function drawIndicatorsEducationVegaLite() {
+  const selection2 = vl.selectSingle('Select')
+  .fields('SymptomType')
+  .init({SymptomType: 'Anxiety'})
+  .bind({SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')});
+
+return vl.markCircle()
+.data(all_education2)
+.title('Symptoms of Depression and Anxiety by Education, April 2020 - February 2021')
+.select(selection2)
+.encode(
+  vl.x({title: 'Time Period'}).fieldO('TimePeriodLabel').sort(time_periods),
+  vl.y({title: '% of the US Adult Population'}).fieldQ('Value'),
+  vl.color({title: 'Education Level'}).fieldN('Subgroup'),
+  
+  vl.tooltip('Value'),
+  vl.opacity().if(selection2, vl.value(1)).value(0)
+)
+.width(450)
+.height(400)
+.render()
+    .then(viewElement => {
+    document.getElementById('ind-ed').appendChild(viewElement);
+  });
+}
 
 
 /*

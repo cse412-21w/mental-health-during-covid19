@@ -123,6 +123,8 @@ module.exports = "/merge.0213c944.csv";
 module.exports = "/merge_race.17461f0e.csv";
 },{}],"../static/merge_gender.csv":[function(require,module,exports) {
 module.exports = "/merge_gender.bd85bb0c.csv";
+},{}],"../static/all_education2.csv":[function(require,module,exports) {
+module.exports = "/all_education2.f64c3e84.csv";
 },{}],"javasript/indicators-race.js":[function(require,module,exports) {
 "use strict";
 
@@ -131,6 +133,8 @@ var _merge = _interopRequireDefault(require("../../static/merge.csv"));
 var _merge_race = _interopRequireDefault(require("../../static/merge_race.csv"));
 
 var _merge_gender = _interopRequireDefault(require("../../static/merge_gender.csv"));
+
+var _all_education = _interopRequireDefault(require("../../static/all_education2.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -149,6 +153,7 @@ var races = ['Hispanic or Latino', 'Non-Hispanic white, single race', 'Non-Hispa
 var indicators = ['Symptoms of Depressive Disorder', 'Symptoms of Anxiety Disorder', 'Symptoms of Anxiety Disorder or Depressive Disorder'];
 var time_periods = ['Apr 23 - May 5', 'May 7 - May 12', 'May 14 - May 19', 'May 21 - May 26', 'May 28 - June 2', 'June 4 - June 9', 'June 11 - June 16', 'June 18 - June 23', 'June 25 - June 30', 'July 2 - July 7', 'July 9 - July 14', 'July 16 - July 21', 'Aug 19 - Aug 31', 'Sep 2 - Sep 14', 'Sep 16 - Sep 28', 'Sep 30 - Oct 12', 'Oct 14 - Oct 26', 'Oct 28 - Nov 9', 'Nov 11 - Nov 23', 'Nov 25 - Dec 7', 'Dec 9 - Dec 21', 'Jan 6 - Jan 18', 'Jan 20 - Feb 1'];
 var symptomtypes = ['Anxiety', 'Depressive', 'Anxiety or Depressive'];
+var edlevels = ['Less than a high school diploma', 'High school diploma or GED', "Some college/Associate's degree", "Bachelor's degree or higher"];
 var options = {
   config: {// Vega-Lite default configuration
   },
@@ -168,6 +173,7 @@ var options = {
 vl.register(vega, vegaLite, options);
 drawIndicatorsGenderVegaLite();
 drawIndicatorsRaceVegaLite();
+drawIndicatorsEducationVegaLite();
 drawCasesSymptomsVegaLite();
 
 function drawIndicatorsGenderVegaLite() {
@@ -270,6 +276,23 @@ function drawCasesSymptomsVegaLite() {
     document.getElementById('cases-mh').appendChild(viewElement);
   });
 }
+
+function drawIndicatorsEducationVegaLite() {
+  var selection2 = vl.selectSingle('Select').fields('SymptomType').init({
+    SymptomType: 'Anxiety'
+  }).bind({
+    SymptomType: vl.menu(symptomtypes).name('Symptom Type: ')
+  });
+  return vl.markCircle().data(_all_education.default).title('Symptoms of Depression and Anxiety by Education, April 2020 - February 2021').select(selection2).encode(vl.x({
+    title: 'Time Period'
+  }).fieldO('TimePeriodLabel').sort(time_periods), vl.y({
+    title: '% of the US Adult Population'
+  }).fieldQ('Value'), vl.color({
+    title: 'Education Level'
+  }).fieldN('Subgroup'), vl.tooltip('Value'), vl.opacity().if(selection2, vl.value(1)).value(0)).width(450).height(400).render().then(function (viewElement) {
+    document.getElementById('ind-ed').appendChild(viewElement);
+  });
+}
 /*
 function drawCasesSymptomsVegaLite() {
   const cases = vl.markLine({color: 'teal'})
@@ -301,7 +324,7 @@ function drawCasesSymptomsVegaLite() {
     });
 }
 */
-},{"../../static/merge.csv":"../static/merge.csv","../../static/merge_race.csv":"../static/merge_race.csv","../../static/merge_gender.csv":"../static/merge_gender.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../../static/merge.csv":"../static/merge.csv","../../static/merge_race.csv":"../static/merge_race.csv","../../static/merge_gender.csv":"../static/merge_gender.csv","../../static/all_education2.csv":"../static/all_education2.csv"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -329,7 +352,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62056" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63259" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
