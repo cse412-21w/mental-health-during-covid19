@@ -44,14 +44,14 @@ d3.csv(url).then(function(data) {
 
 function drawLineVegaLite() {
   const layer1 = plot('cases')
-    .width(800)
-    .height(300)
-    .title("Cumulative COVID-19 Case Counts");
+    .width(600)
+    .height(225)
+    .title("Cumulative Covid-19 Case Counts");
 
   const layer2 = plot('deaths')
-    .width(800)
-    .height(150)
-    .title("Cumulative COVID-19 Death Counts");
+    .width(600)
+    .height(225)
+    .title("Cumulative Covid-19 Death Counts");
 
   return vl.vconcat(layer1, layer2).spacing(5)
     .render()
@@ -142,9 +142,9 @@ function drawLineVegaLite() {
     .encode(
       vl.y({title: 'Cases'}).fieldQ('cases'),
     )
-    .width(800)
-    .height(300)
-    .title("Cumulative COVID-19 Case Counts");
+    .width(600)
+    .height(225)
+    .title("Cumulative Covid-19 Case Counts");
  
   const casetip = vl.markRule({color: "#aaa"})
     .select(hover)
@@ -189,9 +189,9 @@ function drawLineVegaLite() {
     .encode(
       vl.y({title: 'Deaths'}).fieldQ('deaths'),
     )
-    .width(800)
-    .height(150)
-    .title("Cumulative COVID-19 Death Counts");
+    .width(600)
+    .height(225)
+    .title("Cumulative Covid-19 Death Counts");
  
   const deathTip = vl.markRule({color: "#aaa"})
     .select(hover)

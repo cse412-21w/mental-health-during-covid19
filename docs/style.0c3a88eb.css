@@ -26,8 +26,8 @@ body, html {
       rgba(0, 0, 0, 0.7), 
       rgba(0, 0, 0, 0.7)
     ),
-    /* bottom, image */
-    url("../OIP.jpg");
+    
+    url("https://cse412-21w.github.io/mental-health-during-covid19/OIP.9938ca13.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -94,3 +94,5 @@ body, html {
 .wide {
     left: 55em;
 }
+
+/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.0c3a88eb.css.map */
