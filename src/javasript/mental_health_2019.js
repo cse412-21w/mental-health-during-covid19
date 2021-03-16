@@ -43,7 +43,7 @@ function drawLineVegaLite() {
         vl.y({title: 'Percentage'}).fieldQ('percentage'),
         vl.x().fieldN('race')
           .sort(vl.fieldQ('percentage'))
-          .axis({title: null}),
+          .axis({title: null, labelAngle: 45}),
         vl.color({title: 'Race'}).fieldN('race'),
         vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])
     )
