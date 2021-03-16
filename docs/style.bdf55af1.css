@@ -31,6 +31,13 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+}
+
+#scroll-down-container {
+    text-align: center;
+    margin-top: 5em;
+    margin-right: 10em;
 }
 
 #title {
@@ -55,8 +62,11 @@ body, html {
 }
 
 .desc-text {
-    float: right;
-    padding-right: 15em;
+    position: absolute;
+    left: 50em;
+    bottom: 20em;
+    width: 20em;
+
 }
 
 .strong-text {
@@ -65,5 +75,14 @@ body, html {
     color: #F6573F;
 }
 
+#ninethPage{
+    position: relative;
+    max-width: 40em;
+}
 
-/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.2857be14.css.map */
+.icon {
+    font-size: 2em;
+    color: white;
+}
+
+/*# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/style.bdf55af1.css.map */

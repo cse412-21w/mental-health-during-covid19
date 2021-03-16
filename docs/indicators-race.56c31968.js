@@ -250,7 +250,7 @@ function drawIndicatorsRaceVegaLite() {
 function drawCasesSymptomsVegaLite() {
   var brush = vl.selectInterval().encodings('x');
   var cases = vl.markArea({
-    color: 'teal'
+    color: '#F6573F'
   }).data(_merge.default).select(brush).encode(vl.x({
     title: 'Date'
   }).fieldT('date').sort('ascending'), vl.y({
@@ -329,7 +329,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58156" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61662" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

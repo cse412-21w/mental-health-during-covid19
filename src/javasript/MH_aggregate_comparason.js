@@ -27,24 +27,22 @@ drawYouthAdultComparasionVegaLite();
 
 function drawYouthAdultComparasionVegaLite() {
 
-  const adultChart = vl.markBar()
+  const adultChart = vl.markBar({color: '#F6573F'})
     .title({"text": "Number of Adults With Any Mental Illness, 2019 and 2020"})
     .data(adult_aggregate_data)
     .encode(
-      vl.x({title: 'Year'}).fieldN('year').axis({"labelAngle": 0}),
-      vl.y().fieldQ('count').title('Number of Adults'),
-      vl.color().fieldN('year').scale({range: ["#F6573F", "#F6573F"]})
+      vl.x().fieldN('year').axis({"labelAngle": 0}),
+      vl.y().fieldQ('count').title('Number Count')
     )
     .width(200)
     .height(400)
   
-  const youthChart = vl.markBar()
+  const youthChart = vl.markBar({color: '#F6573F'})
     .title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"])
     .data(youth_aggregate_data)
     .encode(
-        vl.x({title: 'Year'}).fieldN('year').axis({"labelAngle": 0}),
-        vl.y().fieldQ('count').title('Number of Youth'),
-        vl.color().fieldN('year').scale({range: ["#F6573F", "#F6573F"]})
+        vl.x().fieldN('year').axis({"labelAngle": 0}),
+        vl.y().fieldQ('count').title('Number Count')
     )
     .width(200)
     .height(400)

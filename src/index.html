@@ -17,8 +17,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0/build/vega-lite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@4.0.0/build/vega-lite-api.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>  
-
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
+    
     <!-- For using Arquero -->
     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/apache-arrow@3"></script>
@@ -27,8 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet"> 
-    <!-- Link vega lite js --> 
-    <!-- <script type="module" src="./vega-lite/depressive-indicator.js" defer></script> -->
+    <script src="https://use.fontawesome.com/ed77f5ca35.js"></script>
     <title>Mental Health during COVID-19</title>
 </head>
 <body>
@@ -41,6 +40,10 @@
       <h3 id="subtitle">An exploration of mental health concerns in the US in the context of COVID-19</h3>
       <h3 id="authors">Jamie Forschmiedt, Travis Xie, Yichi Zhang</h3>
       <div class="divider"></div>
+      <div id='scroll-down-container'>
+        <span id="scroll-down-text">Scroll Down</span>
+        <i class="icon mouse fas fa-mouse"></i>
+      </div>
     </section>
 
     <section id='secondPage' class='viz-container section fp-section'>
@@ -63,13 +66,17 @@
     </section>
 
     <section id='fourthpage' class='viz-container section fp-section'>
-      
+      <h5>
+        Now let's look at mental health. We'll start with a few overall comparisons of <br/>
+        differences between 2019 and 2020, then we'll do a deeper dive into demographic <br/>
+        differences in the prevalence of anxiety and depressive symptoms in 2020.
+      </h5>
     </section>
 
     <section id="fifthPage" class="viz-container section fp-section"> 
       <h5>Percentage of Adults with Any Mental Illness Between 2019 and 2020, by State</h5>    
       <div id='covid-Map-data'></div>
-      <h6>On average, each state had a <span class="strong-text">1.2%</span> increase in the percentage of adults who had any mental illness.</h6>
+      <h6>On average, there was a <span class="strong-text">1.2%</span> increase in the percentage of adults who had any mental illness.</h6>
       <h6>The total increase in the number of adults with any mental illness is <span class="strong-text">3099000.</span></h6>
     </section>
     
@@ -78,9 +85,8 @@
         <h5>Aggregate Comparison of Mental Health Concerns, 2019 and 2020</h5>    
 
         <div id="text-wrapper">
-          <p>From 2019 to 2020, there is significant increase in the amount of youth involved with mental health concerns </p>
-          
-          <p>There is a drastic 65% growth in the youth with at least one severe MDE in 2020 </p>
+          <p>From 2019 to 2020, there was a significant increase in the number of adults with any mental illness <br/>
+             and a striking 65% growth in the number of youth who experienced at least one major depressive episode. </p>
         </div>
         <div id='aggegrate-comparasion'></div>
       </div>
@@ -126,11 +132,22 @@
     </section>
 
     <section id="twelfthPage" class="viz-container section fp-section">
+    
+      <h5>Demo video</h5> 
+      <br/>
+      <div id="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/uWhD6b_3cAc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="divider"></div>
+    </section>
+
+    <section id="thirteenthPage" class="viz-container section fp-section">
       <div>
         <h5>Data Sources:</h5>
         <p>
           <a href='https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp'>CDC Household Pulse Survey 2020</a> <br/>
           <a href='https://www.mhanational.org/sites/default/files/2019-09/2019%20MH%20in%20America%20Final.pdf'>Mental Health America 2019 Report</a> <br/>
+          <a href='https://www.mhanational.org/issues/2020/mental-health-america-all-data'>Mental Health America 2020 Report</a> <br/>
           <a href='https://github.com/nytimes/covid-19-data'>New York Times Covid-19 Data</a>
         </p>
         <br/>
@@ -170,7 +187,7 @@
       //options here
       autoScrolling: true,
       navigation: true,
-      navigationTooltips: ['Introduction', 'Background', "Covid Case Count by State", "Adult Mental Health", "Aggregate Comparison", "Adult Anxiety", "Narrative", "Closer Look: Sex", "Closer Look: Race", "Covid and Anxiety/Depression", "Source and About Us"],
+      navigationTooltips: ['Introduction', 'Background', "Covid Case Count by State", 'Narrative', "Adult Mental Health", "Aggregate Comparison", "Adult Anxiety", "Narrative", "Closer Look: Sex", "Closer Look: Race", "Covid and Anxiety/Depression", "Demo Video", "Source and About Us"],
       showActiveTooltip: true
     });
   </script>

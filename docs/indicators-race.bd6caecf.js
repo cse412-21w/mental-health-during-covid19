@@ -250,7 +250,7 @@ function drawIndicatorsRaceVegaLite() {
 function drawCasesSymptomsVegaLite() {
   var brush = vl.selectInterval().encodings('x');
   var cases = vl.markArea({
-    color: 'teal'
+    color: '#F6573F'
   }).data(_merge.default).select(brush).encode(vl.x({
     title: 'Date'
   }).fieldT('date').sort('ascending'), vl.y({
@@ -302,4 +302,4 @@ function drawCasesSymptomsVegaLite() {
 }
 */
 },{"../../static/merge.csv":"L1Tp","../../static/merge_race.csv":"nMLH","../../static/merge_gender.csv":"eL8k"}]},{},["FSVR"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.e5944e68.js.map
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/indicators-race.bd6caecf.js.map

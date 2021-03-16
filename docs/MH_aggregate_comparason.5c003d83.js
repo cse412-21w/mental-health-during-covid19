@@ -117,19 +117,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"UAIM":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.95c86e3e.csv";
-},{}],"ojpZ":[function(require,module,exports) {
-"use strict";
-
-var _mental_health_ = _interopRequireDefault(require("../../static/mental_health_2019.csv"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import dataset
+})({"kWp5":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/adult_mh_prevalance_aggregate.46b87ee5.csv";
+},{}],"TLC3":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/youth_prevalance_of_mde_aggregate.967315c3.csv";
+},{}],"YyRC":[function(require,module,exports) {
 "use strict"; // the code should be executed in "strict mode".
 // With strict mode, you can not, for example, use undeclared variables
 
+var _adult_mh_prevalance_aggregate = _interopRequireDefault(require("../../static/adult_mh_prevalance_aggregate.csv"));
+
+var _youth_prevalance_of_mde_aggregate = _interopRequireDefault(require("../../static/youth_prevalance_of_mde_aggregate.csv"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var options = {
   config: {// Vega-Lite default configuration
@@ -148,28 +148,24 @@ var options = {
   }
 };
 vl.register(vega, vegaLite, options);
-var dataArray = [];
-/*
-d3.csv(mhdata).then(function(data) {
-  data.forEach(function(d){
-    var type = d.type;
-    var race = +d.race;
-    var percentage = +d.percentage;
-    dataArray.push({type: type, race: race, percentage: percentage})
-  })
-  drawLineVegaLite();
-});*/
+drawYouthAdultComparasionVegaLite();
 
-drawLineVegaLite();
-
-function drawLineVegaLite() {
-  vl.markBar().data(_mental_health_.default).encode(vl.column().fieldN('type').spacing(10).title(null), vl.y().fieldQ('percentage'), vl.x().fieldN('race').sort(vl.fieldQ('percentage')).axis({
-    title: null
-  }), vl.color().fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(150).height(400).render().then(function (viewElement) {
-    // render returns a promise to a DOM element containing the chart
-    // viewElement.value contains the Vega View object instance
-    document.getElementById('md2019').appendChild(viewElement);
+function drawYouthAdultComparasionVegaLite() {
+  var adultChart = vl.markBar({
+    color: '#F6573F'
+  }).title({
+    "text": "Number of Adults With Any Mental Illness, 2019 and 2020"
+  }).data(_adult_mh_prevalance_aggregate.default).encode(vl.x().fieldN('year').axis({
+    "labelAngle": 0
+  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
+  var youthChart = vl.markBar({
+    color: '#F6573F'
+  }).title(["Number of Youth With At Least One Severe", "Major Depressive Episode (MDE), 2019 and 2020"]).data(_youth_prevalance_of_mde_aggregate.default).encode(vl.x().fieldN('year').axis({
+    "labelAngle": 0
+  }), vl.y().fieldQ('count').title('Number Count')).width(200).height(400);
+  vl.hconcat(youthChart, adultChart).render().then(function (viewElement) {
+    document.getElementById('aggegrate-comparasion').appendChild(viewElement);
   });
 }
-},{"../../static/mental_health_2019.csv":"UAIM"}]},{},["ojpZ"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.bdf81312.js.map
+},{"../../static/adult_mh_prevalance_aggregate.csv":"kWp5","../../static/youth_prevalance_of_mde_aggregate.csv":"TLC3"}]},{},["YyRC"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/MH_aggregate_comparason.5c003d83.js.map

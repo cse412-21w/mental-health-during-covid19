@@ -163,9 +163,13 @@ d3.csv(mhdata).then(function(data) {
 drawLineVegaLite();
 
 function drawLineVegaLite() {
-  vl.markBar().data(_mental_health_.default).encode(vl.column().fieldN('type').spacing(10).title(null), vl.y().fieldQ('percentage'), vl.x().fieldN('race').sort(vl.fieldQ('percentage')).axis({
+  vl.markBar().data(_mental_health_.default).encode(vl.column().fieldN('type').spacing(10).title(null), vl.y({
+    title: 'Percentage'
+  }).fieldQ('percentage'), vl.x().fieldN('race').sort(vl.fieldQ('percentage')).axis({
     title: null
-  }), vl.color().fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(150).height(400).render().then(function (viewElement) {
+  }), vl.color({
+    title: 'Race'
+  }).fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(150).height(400).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
     document.getElementById('md2019').appendChild(viewElement);
@@ -199,7 +203,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58156" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61662" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

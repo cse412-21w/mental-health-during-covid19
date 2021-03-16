@@ -117,12 +117,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"op3u":[function(require,module,exports) {
-module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/us-states.e810cdf0.csv";
-},{}],"ZQ0s":[function(require,module,exports) {
+})({"UAIM":[function(require,module,exports) {
+module.exports = "https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.95c86e3e.csv";
+},{}],"ojpZ":[function(require,module,exports) {
 "use strict";
 
-var _usStates = _interopRequireDefault(require("../../static/us-states.csv"));
+var _mental_health_ = _interopRequireDefault(require("../../static/mental_health_2019.csv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -149,40 +149,31 @@ var options = {
 };
 vl.register(vega, vegaLite, options);
 var dataArray = [];
-var stateArray = [];
-d3.csv(_usStates.default).then(function (data) {
-  data.forEach(function (d) {
-    var parseDate = d3.utcParse("%Y-%m-%d");
-    var date = parseDate(d.date);
-    var state = d.state;
-    var cases = +d.cases;
-    var deaths = +d.deaths;
-    dataArray.push({
-      date: date,
-      state: state,
-      cases: cases,
-      deaths: deaths
-    });
-
-    if (!stateArray.includes(state)) {
-      stateArray.push(state);
-    }
-  });
+/*
+d3.csv(mhdata).then(function(data) {
+  data.forEach(function(d){
+    var type = d.type;
+    var race = +d.race;
+    var percentage = +d.percentage;
+    dataArray.push({type: type, race: race, percentage: percentage})
+  })
   drawLineVegaLite();
-});
-stateArray = stateArray.sort();
+});*/
+
+drawLineVegaLite();
 
 function drawLineVegaLite() {
-  var selection = vl.selectSingle('Select').fields('state').init({
-    'state': stateArray[0]
-  }).bind(vl.menu(stateArray));
-  var cases = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('cases'), vl.tooltip(['date', 'cases'])).width(400).height(450);
-  var death = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('deaths'), vl.tooltip(['date', 'deaths'])).width(400).height(450);
-  return vl.hconcat(cases, death).spacing(5).render().then(function (viewElement) {
+  vl.markBar().data(_mental_health_.default).encode(vl.column().fieldN('type').spacing(10).title(null), vl.y({
+    title: 'Percentage'
+  }).fieldQ('percentage'), vl.x().fieldN('race').sort(vl.fieldQ('percentage')).axis({
+    title: null
+  }), vl.color({
+    title: 'Race'
+  }).fieldN('race'), vl.tooltip([vl.fieldN('race'), vl.fieldQ('percentage')])).width(150).height(400).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
-    document.getElementById('covid-data').appendChild(viewElement);
+    document.getElementById('md2019').appendChild(viewElement);
   });
 }
-},{"../../static/us-states.csv":"op3u"}]},{},["ZQ0s"], null)
-//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/covid.fe90c733.js.map
+},{"../../static/mental_health_2019.csv":"UAIM"}]},{},["ojpZ"], null)
+//# sourceMappingURL=https://cse412-21w.github.io/mental-health-during-covid19/mental_health_2019.e6d10020.js.map

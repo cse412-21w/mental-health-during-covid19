@@ -167,17 +167,31 @@ d3.csv(_usStates.default).then(function (data) {
     if (!stateArray.includes(state)) {
       stateArray.push(state);
     }
+
+    stateArray = stateArray.sort();
   });
   drawLineVegaLite();
-});
-stateArray = stateArray.sort();
+}); //stateArray = stateArray.sort();
 
 function drawLineVegaLite() {
-  var selection = vl.selectSingle('Select').fields('state').init({
-    'state': stateArray[0]
-  }).bind(vl.menu(stateArray));
-  var cases = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('cases'), vl.tooltip(['date', 'cases'])).width(400).height(450);
-  var death = vl.markLine().data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x().fieldT('date'), vl.y().fieldQ('deaths'), vl.tooltip(['date', 'deaths'])).width(400).height(450);
+  var selection = vl.selectSingle('Select').fields('state') //.init({'state': stateArray[0]})
+  .init({
+    'state': 'Washington'
+  }).bind(vl.menu(stateArray).name('State: '));
+  var cases = vl.markLine({
+    color: '#F6573F'
+  }).data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x({
+    title: 'Date'
+  }).fieldT('date'), vl.y({
+    title: 'Cases'
+  }).fieldQ('cases'), vl.tooltip(['date', 'cases'])).width(400).height(450);
+  var death = vl.markLine({
+    color: '#F6573F'
+  }).data(dataArray).select(selection).transform(vl.filter(selection)).encode(vl.x({
+    title: 'Date'
+  }).fieldT('date'), vl.y({
+    title: 'Deaths'
+  }).fieldQ('deaths'), vl.tooltip(['date', 'deaths'])).width(400).height(450);
   return vl.hconcat(cases, death).spacing(5).render().then(function (viewElement) {
     // render returns a promise to a DOM element containing the chart
     // viewElement.value contains the Vega View object instance
@@ -212,7 +226,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58156" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61662" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
